@@ -1,4 +1,9 @@
 # Onfleet Node.js Wrapper
+
+![Travis (.org)](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
+![GitHub](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)
+![NPM](https://img.shields.io/npm/l/node-onfleet.svg?style=popout-square)
+
 *Lisez ce document dans une autre langue: [English](https://github.com/onfleet/node-onfleet/blob/master/README.md), [French](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md), [中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)*
 
 Si vous avez des questions, veuillez contacter Onfleet en soumettant un problème [ici](https://github.com/onfleet/node-onfleet/issues) ou contactez support@onfleet.com.
@@ -68,7 +73,7 @@ L'URL de base de l'API Onfleet est `https://onfleet.com/api/v2`, voici les opér
 | `<endpoint>` | GET | POST | PUT | DELETE |
 |:------------:|:---------------------------------------------------:|:----------------------------------------------------------------------:|:------------------------------------:|:-------------:|
 | [Admins](http://docs.onfleet.com/docs/administrators) | get() | create(obj) | update(id, obj) | deleteOne(id) |
-| [Containers](http://docs.onfleet.com/docs/containers) | get(id) | x | update(id, obj) | x |
+| [Containers](http://docs.onfleet.com/docs/containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
 | [Destinations](http://docs.onfleet.com/docs/destinations) | get(id) | create(obj) | x | x |
 | [Hubs](http://docs.onfleet.com/docs/hubs) | get() | x | x | x |
 | [Organization](http://docs.onfleet.com/docs/organizations) | get(), get(id) | x | insertTask(id, obj) | x |

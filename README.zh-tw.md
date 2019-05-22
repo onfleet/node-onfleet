@@ -1,4 +1,9 @@
 # Onfleet Node.js Wrapper
+
+![Travis (.org)](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
+![GitHub](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)
+![NPM](https://img.shields.io/npm/l/node-onfleet.svg?style=popout-square)
+
 *其他語言版本: [English](https://github.com/onfleet/node-onfleet/blob/master/README.md), [French](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md), [正體中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)*
 
 如果對於Onfleet應用程式介面或是我們產品有任何的問題，[歡迎在此留言](https://github.com/onfleet/node-onfleet/issues) 或直接聯繫 support@onfleet.com。
@@ -70,7 +75,7 @@ Onfleet應用程式介面的基本URL為 `https://onfleet.com/api/v2`，下面�
 | `<endpoint>` | GET | POST | PUT | DELETE |
 |:------------:|:---------------------------------------------------:|:----------------------------------------------------------------------:|:------------------------------------:|:-------------:|
 | [Admins](http://docs.onfleet.com/docs/administrators) | get() | create(obj) | update(id, obj) | deleteOne(id) |
-| [Containers](http://docs.onfleet.com/docs/containers) | get(id) | x | update(id, obj) | x |
+| [Containers](http://docs.onfleet.com/docs/containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
 | [Destinations](http://docs.onfleet.com/docs/destinations) | get(id) | create(obj) | x | x |
 | [Hubs](http://docs.onfleet.com/docs/hubs) | get() | x | x | x |
 | [Organization](http://docs.onfleet.com/docs/organizations) | get(), get(id) | x | insertTask(id, obj) | x |
