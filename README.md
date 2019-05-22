@@ -2,7 +2,7 @@
 
 ![Travis (.org)](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
 [![GitHub](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)](https://github.com/onfleet/node-onfleet/blob/master/LICENSE)
-![npm](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)
+[![npm](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
 ![David](https://img.shields.io/david/onfleet/node-onfleet.svg?style=popout-square)
 
 *Read this document in another language: [English](https://github.com/onfleet/node-onfleet/blob/master/README.md), [French](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md), [正體中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)*
@@ -41,7 +41,7 @@ The Onfleet Node.js library provides convenient access to the Onfleet API.
 ## Installation
 
 ```
-npm install node-onfleet
+npm install @onfleet/node-onfleet
 ```
 
 ## Usage
