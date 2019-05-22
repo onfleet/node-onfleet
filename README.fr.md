@@ -1,7 +1,7 @@
 # Onfleet Node.js Wrapper
 
 ![Travis (.org)](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
-![GitHub](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)
+[![GitHub](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)](https://github.com/onfleet/node-onfleet/blob/master/LICENSE)
 ![npm](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)
 ![David](https://img.shields.io/david/onfleet/node-onfleet.svg?style=popout-square)
 
