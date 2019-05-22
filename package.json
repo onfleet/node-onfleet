@@ -1,5 +1,5 @@
 {
-  "name": "node-onfleet",
+  "name": "@onfleet/node-onfleet",
   "version": "1.0.0",
   "description": "Official client library for accessing the Onfleet API",
   "main": "index.js",
@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onfleet/developer.git"
+    "url": "https://github.com/onfleet/node-onfleet.git"
   },
   "keywords": [
     "node-onfleet"
   ],
   "author": "James Li",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/onfleet/developer/issues"
+    "url": "https://github.com/onfleet/node-onfleet/issues"
   },
-  "homepage": "https://github.com/onfleet/developer#readme",
+  "homepage": "https://onfleet.com/",
   "dependencies": {
     "node-fetch": "^2.3.0"
   },

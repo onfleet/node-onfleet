@@ -1,4 +1,11 @@
 # Onfleet Node.js Wrapper
+
+![Travis (.org)](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
+[![GitHub](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)](https://github.com/onfleet/node-onfleet/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
+![David](https://img.shields.io/david/onfleet/node-onfleet.svg?style=popout-square)
+![GitHub top language](https://img.shields.io/github/languages/top/onfleet/node-onfleet.svg?style=popout-square)
+
 *Read this document in another language: [English](https://github.com/onfleet/node-onfleet/blob/master/README.md), [French](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md), [正體中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)*
 
 If you have any questions, please reach out to Onfleet by submitting an issue [here](https://github.com/onfleet/node-onfleet/issues) or contact support@onfleet.com
@@ -35,7 +42,7 @@ The Onfleet Node.js library provides convenient access to the Onfleet API.
 ## Installation
 
 ```
-npm install node-onfleet
+npm install @onfleet/node-onfleet
 ```
 
 ## Usage
@@ -69,7 +76,7 @@ The base URL for the Onfleet API is `https://onfleet.com/api/v2`, here are the s
 | `<endpoint>` | GET | POST | PUT | DELETE |
 |:------------:|:---------------------------------------------------:|:----------------------------------------------------------------------:|:------------------------------------:|:-------------:|
 | [Admins](http://docs.onfleet.com/docs/administrators) | get() | create(obj) | update(id, obj) | deleteOne(id) |
-| [Containers](http://docs.onfleet.com/docs/containers) | get(id) | x | update(id, obj) | x |
+| [Containers](http://docs.onfleet.com/docs/containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
 | [Destinations](http://docs.onfleet.com/docs/destinations) | get(id) | create(obj) | x | x |
 | [Hubs](http://docs.onfleet.com/docs/hubs) | get() | x | x | x |
 | [Organization](http://docs.onfleet.com/docs/organizations) | get(), get(id) | x | insertTask(id, obj) | x |

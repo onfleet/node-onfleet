@@ -1,4 +1,11 @@
 # Onfleet Node.js Wrapper
+
+![Travis (.org)](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
+[![GitHub](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)](https://github.com/onfleet/node-onfleet/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
+![David](https://img.shields.io/david/onfleet/node-onfleet.svg?style=popout-square)
+![GitHub top language](https://img.shields.io/github/languages/top/onfleet/node-onfleet.svg?style=popout-square)
+
 *其他語言版本: [English](https://github.com/onfleet/node-onfleet/blob/master/README.md), [French](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md), [正體中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)*
 
 如果對於Onfleet應用程式介面或是我們產品有任何的問題，[歡迎在此留言](https://github.com/onfleet/node-onfleet/issues) 或直接聯繫 support@onfleet.com。
@@ -36,7 +43,7 @@
 ## 安裝
 
 ```
-npm install node-onfleet
+npm install @onfleet/node-onfleet
 ```
 我們選用了`node-fetch`當作我們HTTP請求的工具，它使用了原生的Fetch API，支援promise，跟其他工具組相比依賴性上也較低。
 
@@ -70,7 +77,7 @@ Onfleet應用程式介面的基本URL為 `https://onfleet.com/api/v2`，下面�
 | `<endpoint>` | GET | POST | PUT | DELETE |
 |:------------:|:---------------------------------------------------:|:----------------------------------------------------------------------:|:------------------------------------:|:-------------:|
 | [Admins](http://docs.onfleet.com/docs/administrators) | get() | create(obj) | update(id, obj) | deleteOne(id) |
-| [Containers](http://docs.onfleet.com/docs/containers) | get(id) | x | update(id, obj) | x |
+| [Containers](http://docs.onfleet.com/docs/containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
 | [Destinations](http://docs.onfleet.com/docs/destinations) | get(id) | create(obj) | x | x |
 | [Hubs](http://docs.onfleet.com/docs/hubs) | get() | x | x | x |
 | [Organization](http://docs.onfleet.com/docs/organizations) | get(), get(id) | x | insertTask(id, obj) | x |
