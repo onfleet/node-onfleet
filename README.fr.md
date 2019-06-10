@@ -9,7 +9,8 @@
 
 *Lisez ce document dans une autre langue: [English](https://github.com/onfleet/node-onfleet/blob/master/README.md), [French](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md), [中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)*
 
-Si vous avez des questions, veuillez contacter Onfleet en soumettant un problème [ici](https://github.com/onfleet/node-onfleet/issues) ou contactez support@onfleet.com.
+
+Visitez notre [article de blog sur le projet de wrapper API](https://onfleet.com/blog/api-wrappers-explained/) pour en savoir plus sur nos initiatives. Si vous avez des questions, veuillez contacter Onfleet en soumettant un problème [ici](https://github.com/onfleet/node-onfleet/issues) ou contactez support@onfleet.com.
 
 ### Table des matières
 - [Onfleet Node.js Wrapper](#onfleet-nodejs-wrapper)
