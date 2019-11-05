@@ -66,7 +66,7 @@ Une fois que l'objet Onfleet est créé, vous aurez accès à tous les points de
 Exécuter `npm test`
 
 ### étranglement
-La limitation de débit est appliquée par l'API avec un seuil de 20 demandes par seconde pour toutes les clés d'API de votre organisation. Pour en savoir plus, [cliquez ici](http://docs.onfleet.com/docs/throttling).
+La limitation de débit est appliquée par l'API avec un seuil de 20 demandes par seconde pour toutes les clés d'API de votre organisation. Pour en savoir plus, [cliquez ici](https://docs.onfleet.com/reference#throttling).
 
 ### Réponses
 Le wrapper de l'API `node-onfleet` renvoie le `body` d'un [objet Response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
@@ -76,16 +76,16 @@ L'URL de base de l'API Onfleet est `https://onfleet.com/api/v2`, voici les opér
 
 | `<endpoint>` | GET | POST | PUT | DELETE |
 |:------------:|:---------------------------------------------------:|:----------------------------------------------------------------------:|:------------------------------------:|:-------------:|
-| [Admins](http://docs.onfleet.com/docs/administrators) | get() | create(obj) | update(id, obj) | deleteOne(id) |
-| [Containers](http://docs.onfleet.com/docs/containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
-| [Destinations](http://docs.onfleet.com/docs/destinations) | get(id) | create(obj) | x | x |
-| [Hubs](http://docs.onfleet.com/docs/hubs) | get() | x | x | x |
-| [Organization](http://docs.onfleet.com/docs/organizations) | get(), get(id) | x | insertTask(id, obj) | x |
-| [Recipients](http://docs.onfleet.com/docs/recipients) | get(id), get(name, 'name'), get(phone, 'phone') | create(obj) | update(id, obj) | x |
-| [Tasks](http://docs.onfleet.com/docs/tasks) | get(query), get(id), get(shortId, 'shortId') | create(obj), clone(id), forceComplete(id), batch(obj), autoAssign(obj) | update(id, obj) | deleteOne(id) |
-| [Teams](http://docs.onfleet.com/docs/teams) | get(), get(id) | create(obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
-| [Webhooks](http://docs.onfleet.com/docs/webhooks) | get() | create(obj) | x | deleteOne(id) |
-| [Workers](http://docs.onfleet.com/docs/workers) | get(), get(query), get(id), getByLocation(obj), getSchedule(id) | create(obj), setSchedule(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
+| [Admins](https://docs.onfleet.com/reference#administrators) | get() | create(obj) | update(id, obj) | deleteOne(id) |
+| [Containers](https://docs.onfleet.com/reference#containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
+| [Destinations](https://docs.onfleet.com/reference#destinations) | get(id) | create(obj) | x | x |
+| [Hubs](https://docs.onfleet.com/reference#hubs) | get() | x | x | x |
+| [Organization](https://docs.onfleet.com/reference#organizations) | get(), get(id) | x | insertTask(id, obj) | x |
+| [Recipients](https://docs.onfleet.com/reference#recipients) | get(id), get(name, 'name'), get(phone, 'phone') | create(obj) | update(id, obj) | x |
+| [Tasks](https://docs.onfleet.com/reference#tasks) | get(query), get(id), get(shortId, 'shortId') | create(obj), clone(id), forceComplete(id), batch(obj), autoAssign(obj) | update(id, obj) | deleteOne(id) |
+| [Teams](https://docs.onfleet.com/reference#teams) | get(), get(id) | create(obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
+| [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
+| [Workers](https://docs.onfleet.com/reference#workers) | get(), get(query), get(id), getByLocation(obj), getSchedule(id) | create(obj), setSchedule(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
 
 #### Requêtes GET
 Pour obtenir tous les documents d'un noeud final, cela renvoie une promesse contenant un tableau de résultats:
@@ -207,8 +207,7 @@ onfleet.tasks.autoAssign('<auto_assign_object>');
 onfleet.workers.setSchedule('<24_digit_id>', newSchedule);
 ```
 
-Pour plus de détails, consultez notre documentation sur [clone](http://docs.onfleet.com/docs/tasks#clone-task), [forceComplete](http://docs.onfleet.com/docs/tasks#complete-task), [batchCreate](http://docs.onfleet.com/docs/tasks#create-tasks-in-batch), [autoAssign](http://docs.onfleet.com/docs/tasks#automatically-assign-list-of-tasks), [setSchedule](http://docs.onfleet.com/docs/workers#update-workers-schedule)
-
+Pour plus de détails, consultez notre documentation sur [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), and [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule)
 
 #### Demandes PUT
 Pour mettre à jour un document dans un noeud final:
