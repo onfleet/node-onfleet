@@ -59,13 +59,13 @@ Once the Onfleet object is created, you can use a utility function to test on th
 onfleet.verifyKey();
 ```
 
-Once the Onfleet object is created, you will get access to all the API endpoints as documented in the [Onfleet API documentation](http://docs.onfleet.com/). Here are some usage case:
+Once the Onfleet object is created, you will get access to all the API endpoints as documented in the [Onfleet API documentation](https://docs.onfleet.com/). Here are some usage case:
 
 ### Unit Testing
 Run `npm test`
 
 ### Throttling
-Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys, learn more about it [here](http://docs.onfleet.com/docs/throttling). 
+Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys, learn more about it [here](https://docs.onfleet.com/reference#throttling). 
 
 ### Responses
 The `node-onfleet` API wrapper returns the body of a [Response object](https://developer.mozilla.org/en-US/docs/Web/API/Response).
@@ -76,16 +76,16 @@ The base URL for the Onfleet API is `https://onfleet.com/api/v2`, here are the s
 
 | `<endpoint>` | GET | POST | PUT | DELETE |
 |:------------:|:---------------------------------------------------:|:----------------------------------------------------------------------:|:------------------------------------:|:-------------:|
-| [Admins](http://docs.onfleet.com/docs/administrators) | get() | create(obj) | update(id, obj) | deleteOne(id) |
-| [Containers](http://docs.onfleet.com/docs/containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
-| [Destinations](http://docs.onfleet.com/docs/destinations) | get(id) | create(obj) | x | x |
-| [Hubs](http://docs.onfleet.com/docs/hubs) | get() | x | x | x |
-| [Organization](http://docs.onfleet.com/docs/organizations) | get(), get(id) | x | insertTask(id, obj) | x |
-| [Recipients](http://docs.onfleet.com/docs/recipients) | get(id), get(name, 'name'), get(phone, 'phone') | create(obj) | update(id, obj) | x |
-| [Tasks](http://docs.onfleet.com/docs/tasks) | get(query), get(id), get(shortId, 'shortId') | create(obj), clone(id), forceComplete(id), batch(obj), autoAssign(obj) | update(id, obj) | deleteOne(id) |
-| [Teams](http://docs.onfleet.com/docs/teams) | get(), get(id) | create(obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
-| [Webhooks](http://docs.onfleet.com/docs/webhooks) | get() | create(obj) | x | deleteOne(id) |
-| [Workers](http://docs.onfleet.com/docs/workers) | get(), get(query), get(id), getByLocation(obj), getSchedule(id) | create(obj), setSchedule(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
+| [Admins](https://docs.onfleet.com/reference#administrators) | get() | create(obj) | update(id, obj) | deleteOne(id) |
+| [Containers](https://docs.onfleet.com/reference#containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
+| [Destinations](https://docs.onfleet.com/reference#destinations) | get(id) | create(obj) | x | x |
+| [Hubs](https://docs.onfleet.com/reference#hubs) | get() | x | x | x |
+| [Organization](https://docs.onfleet.com/reference#organizations) | get(), get(id) | x | insertTask(id, obj) | x |
+| [Recipients](https://docs.onfleet.com/reference#recipients) | get(id), get(name, 'name'), get(phone, 'phone') | create(obj) | update(id, obj) | x |
+| [Tasks](https://docs.onfleet.com/reference#tasks) | get(query), get(id), get(shortId, 'shortId') | create(obj), clone(id), forceComplete(id), batch(obj), autoAssign(obj) | update(id, obj) | deleteOne(id) |
+| [Teams](https://docs.onfleet.com/reference#teams) | get(), get(id) | create(obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
+| [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
+| [Workers](https://docs.onfleet.com/reference#workers) | get(), get(query), get(id), getByLocation(obj), getSchedule(id) | create(obj), setSchedule(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
 
 #### GET Requests
 To get all the documents within an endpoint, this returns a Promise containing an array of results:
@@ -210,7 +210,7 @@ onfleet.tasks.autoAssign('<auto_assign_object>');
 
 onfleet.workers.setSchedule('<24_digit_id>', newSchedule);
 ```
-For more details, check our documentation on [clone](http://docs.onfleet.com/docs/tasks#clone-task), [forceComplete](http://docs.onfleet.com/docs/tasks#complete-task), [batchCreate](http://docs.onfleet.com/docs/tasks#create-tasks-in-batch), [autoAssign](http://docs.onfleet.com/docs/tasks#automatically-assign-list-of-tasks), and [setSchedule](http://docs.onfleet.com/docs/workers#update-workers-schedule)
+For more details, check our documentation on [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), and [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule)
 
 #### PUT Requests
 To update a document within an endpoint:
