@@ -46,6 +46,15 @@
 ```
 npm install @onfleet/node-onfleet
 ```
+
+若是使用`TypeScript`，則需另外安裝[typed definition](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/onfleet__node-onfleet)：
+
+```
+npm install @types/onfleet__node-onfleet
+```
+
+(感謝 @marcobeltempo 的開源贊助)
+
 我們選用了`node-fetch`當作我們HTTP請求的工具，它使用了原生的Fetch API，支援promise，跟其他工具組相比依賴性上也較低。
 
 ## 使用守則
