@@ -46,6 +46,14 @@ The Onfleet Node.js library provides convenient access to the Onfleet API.
 npm install @onfleet/node-onfleet
 ```
 
+For TypeScript, install the [typed definition](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/onfleet__node-onfleet):
+
+```
+npm install @types/onfleet__node-onfleet
+```
+
+(Kudos to @marcobeltempo for the contribution!)
+
 ## Usage
 Before using the API wrapper, you will need to obtain an API key from your organization admin. Creation and integration of API keys are performed through the [Onfleet dashboard](https://onfleet.com/dashboard#/manage).
 
