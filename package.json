@@ -20,6 +20,7 @@
   },
   "homepage": "https://onfleet.com/",
   "dependencies": {
+    "bottleneck": "^2.19.5",
     "node-fetch": "^2.3.0"
   },
   "devDependencies": {
