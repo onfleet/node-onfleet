@@ -76,7 +76,7 @@ onfleet.verifyKey();
 執行 `npm test`
 
 ### API速限
-原則上API的速限為每秒鐘20次請求，詳情請參考[官方文件](https://docs.onfleet.com/reference#throttling)。在此模組內我們也提供了限速，以避免過度的API請求導致帳號被禁的狀況。
+原則上API的速限為每秒鐘20次請求，詳情請參考[官方文件](https://docs.onfleet.com/reference#throttling)。在此模組內我們也提供了限速，以避免您無意間超過了API請求的速限而導致帳號被禁的狀況。
 
 ### 請求回應
 所有請求的回應皆為一[Response物件](https://developer.mozilla.org/en-US/docs/Web/API/Response)的內容主體。
