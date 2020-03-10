@@ -73,7 +73,7 @@ Once the Onfleet object is created, you will get access to all the API endpoints
 Run `npm test`
 
 ### Throttling
-Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys, learn more about it [here](https://docs.onfleet.com/reference#throttling). We have implemented a limiter on the wrapper itself to avoid you from excessively hitting Onfleet's rate limitations and eventually be banned for.
+Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys, learn more about it [here](https://docs.onfleet.com/reference#throttling). We have implemented a limiter on the wrapper itself to avoid you from unintentionally exceeding your rate limitations and eventually be banned for.
 
 ### Responses
 The `node-onfleet` API wrapper returns the body of a [Response object](https://developer.mozilla.org/en-US/docs/Web/API/Response).
