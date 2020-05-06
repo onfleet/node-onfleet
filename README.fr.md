@@ -74,7 +74,7 @@ Une fois que l'objet Onfleet est créé, vous aurez accès à tous les points de
 Exécuter `npm test`
 
 ### étranglement
-La limitation de débit est appliquée par l'API avec un seuil de 20 demandes par seconde pour toutes les clés d'API de votre organisation. Pour en savoir plus, [cliquez ici](https://docs.onfleet.com/reference#throttling).
+La limitation de débit est appliquée par l'API avec un seuil de 20 demandes par seconde pour toutes les clés d'API de votre organisation. Pour en savoir plus, [cliquez ici](https://docs.onfleet.com/reference#throttling). Nous avons mis en place un limiteur sur le wrapper lui-même pour vous éviter de dépasser involontairement vos limitations de taux et éventuellement être banni.
 
 ### Réponses
 Le wrapper de l'API `node-onfleet` renvoie le `body` d'un [objet Response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
