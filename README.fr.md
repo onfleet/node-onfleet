@@ -217,7 +217,7 @@ onfleet.workers.setSchedule('<24_digit_id>', newSchedule);
 onfleet.teams.autoDispatch('<24_digit_id>', dispatchConfig);
 ```
 
-Pour plus de détails, consultez notre documentation sur [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), and [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule)
+Pour plus de détails, consultez notre documentation sur [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule), et [autoDispatch](https://docs.onfleet.com/reference#team-auto-dispatch).
 
 #### Demandes PUT
 Pour mettre à jour un document dans un noeud final:

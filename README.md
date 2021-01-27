@@ -220,7 +220,7 @@ onfleet.workers.setSchedule('<24_digit_id>', newSchedule);
 
 onfleet.teams.autoDispatch('<24_digit_id>', dispatchConfig);
 ```
-For more details, check our documentation on [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), and [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule)
+For more details, check our documentation on [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule), and [autoDispatch](https://docs.onfleet.com/reference#team-auto-dispatch)
 
 #### PUT Requests
 To update a document within an endpoint:
