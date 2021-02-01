@@ -64,6 +64,12 @@ npm install @types/onfleet__node-onfleet
 ```js
 const onfleet = new Onfleet('<api_key>');
 ```
+
+由於某些應用的執行逾時參數較低（例如Heroku的三十秒設定），您可以在創立物件時，提供一個低於70000ms、客製化的逾時參數：
+```js
+const onfleet = new Onfleet('<api_key>', 30000) // 在此設定執行逾時參數為30000ms
+```
+
 ### 金鑰認證
 當Onfleet物件成功被創建，表示您的應用程式介面金鑰是符合預期的。您可以嘗試使用verifyKey函式來測試您的金鑰是否合法，authentication這個endpoint會認證您的金鑰，回應為一布林值：
 ```js

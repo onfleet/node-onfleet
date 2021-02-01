@@ -61,6 +61,12 @@ To start utilizing the Onfleet API, you simply need to create an Onfleet object 
 ```js
 const onfleet = new Onfleet('<api_key>');
 ```
+
+As an optional field, you can introduce a customized timeout that is less than the default 70000ms (default Onfleet API timeout) by providing a 2nd parameter:
+```js
+const onfleet = new Onfleet('<api_key>', 30000) // This will set your wrappers to timeout at 30000ms instead of 70000ms
+```
+
 ### Authentication
 Once the Onfleet object is created, you can use a utility function to test on the authentication endpoint, this function returns a boolean:
 ```js
