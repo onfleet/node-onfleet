@@ -62,6 +62,11 @@ Pour commencer à utiliser l'API Onfleet, il vous suffit de créer un objet Onfl
 ```js
 const onfleet = new Onfleet('<clé_api>');
 ```
+En tant que champ facultatif, vous pouvez introduire un délai d'expiration personnalisé inférieur à la valeur par défaut de 70000 ms (délai d'expiration de l'API Onfleet par défaut) en fournissant un 2ème paramètre:
+```js
+const onfleet = new Onfleet('<clé_api>', 30000) // Cela mettra vos wrappers à expiration à 30000ms au lieu de 70000ms
+```
+
 ### Authentification
 Une fois que l'objet Onfleet est créé, vous pouvez utiliser une fonction utilitaire pour tester le noeud final d'authentification. Cette fonction renvoie un booléen:
 ```js
