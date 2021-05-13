@@ -99,7 +99,7 @@ Onfleet應用程式介面的基本URL為 `https://onfleet.com/api/v2`，下面�
 | [Organization](https://docs.onfleet.com/reference#organizations) | get(), get(id) | x | insertTask(id, obj) | x |
 | [Recipients](https://docs.onfleet.com/reference#recipients) | get(id), get(name, 'name'), get(phone, 'phone') | create(obj) | update(id, obj) | x |
 | [Tasks](https://docs.onfleet.com/reference#tasks) | get(query), get(id), get(shortId, 'shortId') | create(obj), clone(id), forceComplete(id), batch(obj), autoAssign(obj) | update(id, obj) | deleteOne(id) |
-| [Teams](https://docs.onfleet.com/reference#teams) | get(), get(id) | create(obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
+| [Teams](https://docs.onfleet.com/reference#teams) | get(), get(id) | create(obj), autoDispatch(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
 | [Workers](https://docs.onfleet.com/reference#workers) | get(), get(query), get(id), getByLocation(obj), getSchedule(id) | create(obj), setSchedule(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
 
@@ -216,7 +216,7 @@ const driver = {
 };
 onfleet.workers.create(driver);
 ```
-其他延伸的POST請求包含了tasks節點上的`clone`, `forceComplete`, `batchCreate`, `autoAssign`以及workers節點上的`setSchedule`：
+其他延伸的POST請求包含了tasks節點上的`clone`, `forceComplete`, `batchCreate`, `autoAssign`，workers節點上的`setSchedule`，以及teams節點上的`autoDispatch`：
 ```js
 onfleet.tasks.clone('<24_digit_id>');
 onfleet.tasks.forceComplete('<24_digit_id>', '<completion_details>');
@@ -224,8 +224,10 @@ onfleet.tasks.batchCreate('<task_object_array>');
 onfleet.tasks.autoAssign('<auto_assign_object>');
 
 onfleet.workers.setSchedule('<24_digit_id>', newSchedule);
+
+onfleet.teams.autoDispatch('<24_digit_id>', dispatchConfig);
 ```
-參考資料：[clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), 以及[setSchedule](https://docs.onfleet.com/reference#set-workers-schedule)。
+參考資料：[clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule)以及[autoDispatch](https://docs.onfleet.com/reference#team-auto-dispatch)。
 
 #### PUT 請求
 取代（更新）某單一指定資源的指令如下:
