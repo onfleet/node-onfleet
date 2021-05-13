@@ -97,7 +97,7 @@ The base URL for the Onfleet API is `https://onfleet.com/api/v2`, here are the s
 | [Organization](https://docs.onfleet.com/reference#organizations) | get(), get(id) | x | insertTask(id, obj) | x |
 | [Recipients](https://docs.onfleet.com/reference#recipients) | get(id), get(name, 'name'), get(phone, 'phone') | create(obj) | update(id, obj) | x |
 | [Tasks](https://docs.onfleet.com/reference#tasks) | get(query), get(id), get(shortId, 'shortId') | create(obj), clone(id), forceComplete(id), batch(obj), autoAssign(obj) | update(id, obj) | deleteOne(id) |
-| [Teams](https://docs.onfleet.com/reference#teams) | get(), get(id) | create(obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
+| [Teams](https://docs.onfleet.com/reference#teams) | get(), get(id) | create(obj), autoDispatch(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
 | [Workers](https://docs.onfleet.com/reference#workers) | get(), get(query), get(id), getByLocation(obj), getSchedule(id) | create(obj), setSchedule(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
 
@@ -215,7 +215,7 @@ const driver = {
 };
 onfleet.workers.create(driver);
 ```
-Extended POST requests include `clone`, `forceComplete`, `batchCreate`, `autoAssign` on the tasks endpoint and `setSchedule` on the workers endpoint:
+Extended POST requests include `clone`, `forceComplete`, `batchCreate`, `autoAssign` on the tasks endpoint, `setSchedule` on the workers endpoint, and `autoDispatch` on the teams endpoint:
 ```js
 onfleet.tasks.clone('<24_digit_id>');
 onfleet.tasks.forceComplete('<24_digit_id>', '<completion_details>');
@@ -223,8 +223,10 @@ onfleet.tasks.batchCreate('<task_object_array>');
 onfleet.tasks.autoAssign('<auto_assign_object>');
 
 onfleet.workers.setSchedule('<24_digit_id>', newSchedule);
+
+onfleet.teams.autoDispatch('<24_digit_id>', dispatchConfig);
 ```
-For more details, check our documentation on [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), and [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule)
+For more details, check our documentation on [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule), and [autoDispatch](https://docs.onfleet.com/reference#team-auto-dispatch)
 
 #### PUT Requests
 To update a document within an endpoint:
