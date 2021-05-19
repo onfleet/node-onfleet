@@ -22,6 +22,11 @@ const newTeam = {
   ],
   hub: 'tKxSfU7psqDQEBVn5e2VQ~*O',
 };
+const etaDetail = {
+  dropoffLocation: '101.627378,3.1403995',
+  pickupLocation: '101.5929671,3.1484824',
+  pickupTime: '1620965258',
+};
 const completionDetail = {
   completionDetails: {
     success: true,
@@ -82,10 +87,13 @@ describe('HTTP Request testing', () => {
     nock(baseUrl)
       .get(uri => uri.includes('recipients'))
       .reply(200, response.getRecipients);
-    // We use the team endpoint to test createOne()
+    // We use the team endpoint to test createOne() and getWorkerEta()
     nock(baseUrl)
       .post(uri => uri.includes('teams'))
       .reply(200, response.createTeams);
+    nock(baseUrl)
+      .get(uri => uri.includes('teams'))
+      .reply(200, response.getWorkerEta);
     // We use the task endpoint to test forceComplete()
     nock(baseUrl)
       .post(uri => uri.includes('complete'))
@@ -154,6 +162,14 @@ describe('HTTP Request testing', () => {
         // Expect an object gets returned
         expect(typeof res).to.equal('object');
         assert.equal(res.name, 'Onfleet Team');
+      });
+  });
+  it('Get function - worker eta of team', () => {
+    return onfleet.teams.getWorkerEta('SxD9Ran6pOfnUDgfTecTsgXd', etaDetail)
+      .then((res) => {
+        // Expect an object gets returned
+        expect(typeof res).to.equal('object');
+        assert.equal(res.steps[0].arrivalTime, 1621339297);
       });
   });
   it('Force complete a task', () => {
