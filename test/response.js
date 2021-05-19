@@ -94,6 +94,28 @@ module.exports = {
     ],
     hub: 'tKxSfU7psqDQEBVn5e2VQ~*O',
   },
+  getWorkerEta: {
+    workerId: '56BsmZRWAKgGGG9g0xDczl6u',
+    vehicle: 'CAR',
+    steps: [
+      {
+        location: [101.5929671, 3.1484824],
+        travelTime: 1738,
+        distance: 21333,
+        serviceTime: 120,
+        arrivalTime: 1621339297,
+        completionTime: 1621341129,
+      },
+      {
+        location: [101.627378, 3.1403995],
+        travelTime: 645,
+        distance: 6348,
+        serviceTime: 120,
+        arrivalTime: 1621341774,
+        completionTime: 1621341894,
+      },
+    ],
+  },
   forceComplete: {
     status: 200,
     completionDetails: {
