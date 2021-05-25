@@ -70,6 +70,16 @@ const onfleet = new Onfleet('<api_key>');
 const onfleet = new Onfleet('<api_key>', 30000) // 在此設定執行逾時參數為30000ms
 ```
 
+作為可選字段，您可以引入一個用於 Bottleneck 的選項對象 [Bottleneck](https://www.npmjs.com/package/bottleneck).
+```js
+const onfleet = new Onfleet('<api_key>', 30000, {
+  LIMITER_RESERVOIR: 10,                // default 20
+  LIMITER_WAIT_UPON_DEPLETION: 20000,   // default 10000
+  LIMITER_MAX_CONCURRENT: 5,            // default 1
+  LIMITER_MIN_TIME: 50,                 // default 50
+});
+```
+
 ### 金鑰認證
 當Onfleet物件成功被創建，表示您的應用程式介面金鑰是符合預期的。您可以嘗試使用verifyKey函式來測試您的金鑰是否合法，authentication這個endpoint會認證您的金鑰，回應為一布林值：
 ```js
