@@ -66,6 +66,16 @@ En tant que champ facultatif, vous pouvez introduire un délai d'expiration pers
 ```js
 const onfleet = new Onfleet('<clé_api>', 30000) // Cela mettra vos wrappers à expiration à 30000ms au lieu de 70000ms
 ```
+En tant que champ facultatif, vous pouvez introduire un objet d'options pour [Bottleneck](https://www.npmjs.com/package/bottleneck).
+
+```js
+const onfleet = new Onfleet("<api_key>", 30000, {
+  LIMITER_RESERVOIR: 10, // default 20
+  LIMITER_WAIT_UPON_DEPLETION: 20000, // default 10000
+  LIMITER_MAX_CONCURRENT: 5, // default 1
+  LIMITER_MIN_TIME: 50, // default 50
+});
+```
 
 ### Authentification
 Une fois que l'objet Onfleet est créé, vous pouvez utiliser une fonction utilitaire pour tester le noeud final d'authentification. Cette fonction renvoie un booléen:
