@@ -73,6 +73,31 @@ describe('Utility function testing - Auth test returns 200 ok', () => {
   });
 });
 
+describe('Initial testing', () => {
+  it('without bottleneck options', () => {
+    const onfleetWithoutOptions = new Onfleet(apiKey);
+    const constans = require('../lib/constants');
+    assert.equal(constans.LIMITER_MAX_CONCURRENT, 1);
+    assert.equal(constans.LIMITER_MIN_TIME, 50);
+    assert.equal(constans.LIMITER_WAIT_UPON_DEPLETION, 10000);
+    assert.equal(constans.LIMITER_RESERVOIR, 20);
+  });
+
+  it('with bottleneck options', () => {
+    const onfleetWithOptions = new Onfleet(apiKey, undefined, {
+      LIMITER_RESERVOIR: 10,
+      LIMITER_WAIT_UPON_DEPLETION: 20000,
+      LIMITER_MAX_CONCURRENT: 5,
+      LIMITER_MIN_TIME: 10,
+    });
+    const constans = require('../lib/constants');
+    assert.equal(constans.LIMITER_MAX_CONCURRENT, 5);
+    assert.equal(constans.LIMITER_MIN_TIME, 10);
+    assert.equal(constans.LIMITER_WAIT_UPON_DEPLETION, 20000);
+    assert.equal(constans.LIMITER_RESERVOIR, 10);
+  });
+});
+
 describe('HTTP Request testing', () => {
   const onfleet = new Onfleet(apiKey);
   beforeEach(() => {
