@@ -15,7 +15,7 @@
 Visit our blog post on the [API wrapper project](https://onfleet.com/blog/api-wrappers-explained/) to learn more about our initiatives.  
 If you have any questions, please reach us by submitting an issue [here](https://github.com/onfleet/node-onfleet/issues) or contact support@onfleet.com.
 
-### Table of Contents
+### Table of contents
 
 * [Table of contents](#table-of-contents)
 * [Synopsis](#synopsis)
@@ -27,17 +27,17 @@ If you have any questions, please reach us by submitting an issue [here](https:/
 * [Responses](#responses)
 * [Supported CRUD operations](#supported-crud-operations)
     - [GET Requests](#get-requests)
-        - [Examples of `get()`](#examples-of-get)
-        - [Examples of `get(param)`](#examples-of-getparam)
-        - [Examples of `getByLocation`](#examples-of-getbylocation)
+        * [Examples of `get()`](#examples-of-get)
+        * [Examples of `get(param)`](#examples-of-getparam)
+        * [Examples of `getByLocation`](#examples-of-getbylocation)
     - [POST Requests](#post-requests)
-        - [Examples of `create()`](#examples-of-create)
+        * [Examples of `create()`](#examples-of-create)
     - [PUT Requests](#put-requests)
-        - [Examples of `update()`](#examples-of-update)
-        - [Examples of `insertTask()`](#examples-of-inserttask)
+        * [Examples of `update()`](#examples-of-update)
+        * [Examples of `insertTask()`](#examples-of-inserttask)
     - [DELETE Requests](#delete-requests)
-        - [Examples of `deleteOne()`](#examples-of-deleteone)
-- [Examples of utilizing your CRUD operations](#examples-of-crud-operations)
+        * [Examples of `deleteOne()`](#examples-of-deleteone)
+- [Examples of utilizing your CRUD operations](#examples-of-utilizing-your-crud-operations)
 - [Things NOT to do](#things-not-to-do)
 
 ## Synopsis
@@ -83,11 +83,11 @@ const onfleetApi = new Onfleet("<your_api_key>", 30000, {
 ### Authentication
 Once the `Onfleet` object is created, you can test on the authentication endpoint:
 ```js
-onfleet.verifyKey();  // Returns a boolean
+onfleetApi.verifyKey();  // Returns a boolean
 ```
 
 ### Unit Testing
-Run `npm test`
+Run `npm test`.
 
 ### Throttling
 Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys. Learn more about it [here](https://docs.onfleet.com/reference#throttling).
@@ -251,7 +251,7 @@ deleteOne("<24_digit_ID>");
 onfleetApi.workers.deleteOne("<24_digit_ID>");
 ```
 
-### Examples of CRUD operations
+### Examples of utilizing your CRUD operations
 
 - Get all the recipients:
   ```js
@@ -289,10 +289,10 @@ onfleetApi.workers.deleteOne("<24_digit_ID>");
     .get()
     .then((workers) => {
       for (let worker of workers) {
-        if (worker.name == "some_name") {
-          onfleet.teams.get(worker.teams[0]).then((result) => {
-            // Do something with the team
-          });
+        for (let metadataEntry of worker.metadata) {
+          if (metadataEntry.name === "hasFreezer" && metadataEntry.value) {
+            // Do something
+          }
         }
       }
     })
@@ -300,12 +300,10 @@ onfleetApi.workers.deleteOne("<24_digit_ID>");
 
   // DO
   onfleetApi.workers
-    .matchMetadata({ ??? })
+    .matchMetadata([{"name": "hasFreezer", "type": "boolean", "value": true}])
     .then((workers) => {
       for (let worker of workers) {
-        onfleet.teams.get(worker.teams[0]).then((result) => {
-          // Do something with the team
-        });
+        // Do something
       }
     })
     .catch((err) => { /* ... */ });
