@@ -1,248 +1,197 @@
 # Onfleet Node.js Wrapper
 
-![Travis (.org)](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
-[![GitHub](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)](https://github.com/onfleet/node-onfleet/blob/master/LICENSE)
-![David](https://img.shields.io/david/onfleet/node-onfleet.svg?style=popout-square)
-[![npm (scoped)](https://img.shields.io/npm/v/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
-![GitHub top language](https://img.shields.io/github/languages/top/onfleet/node-onfleet.svg?style=popout-square)
-[![npm](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
+![Build](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
+[![License](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)](https://github.com/onfleet/node-onfleet/blob/master/LICENSE)
+![Dependencies](https://img.shields.io/david/onfleet/node-onfleet.svg?style=popout-square)
+[![npm - Version](https://img.shields.io/npm/v/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
+![GitHub - Top language](https://img.shields.io/github/languages/top/onfleet/node-onfleet.svg?style=popout-square)
+[![npm - Downloads](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
 
-_Read this document in another language: [English](https://github.com/onfleet/node-onfleet/blob/master/README.md), [French](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md), [正體中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)_
+> *Read this document in another language*:  
+> [French](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md)  
+> [正體中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)  
+> [Español](https://github.com/onfleet/node-onfleet/blob/master/README.es.md)  
 
-Visit our [blog post on the API wrapper project](https://onfleet.com/blog/api-wrappers-explained/) to learn more about our initiatives. If you have any questions, please reach out to Onfleet by submitting an issue [here](https://github.com/onfleet/node-onfleet/issues) or contact support@onfleet.com
+Visit our blog post on the [API wrapper project](https://onfleet.com/blog/api-wrappers-explained/) to learn more about our initiatives.  
+If you have any questions, please reach us by submitting an issue [here](https://github.com/onfleet/node-onfleet/issues) or contact support@onfleet.com.
 
 ### Table of Contents
 
-- [Onfleet Node.js Wrapper](#onfleet-nodejs-wrapper)
-  - [Table of Contents](#table-of-contents)
-  * [Synopsis](#synopsis)
-  * [Installation](#installation)
-  * [Usage](#usage)
-    - [Authentication](#authentication)
-    - [Unit Testing](#unit-testing)
-    - [Throttling](#throttling)
-    - [Responses](#responses)
-    - [Supported CRUD Operations](#supported-crud-operations)
-      - [GET Requests](#get-requests)
-        - [Examples of get()](#examples-of-get)
-        - [Examples of get(param)](#examples-of-get-param)
-        - [Examples of getByLocation](#examples-of-getbylocation)
-      - [POST Requests](#post-requests)
-        - [Examples of create()](#examples-of-create)
-      - [PUT Requests](#put-requests)
-        - [Examples of update()](#examples-of-update)
-        - [Examples of insertTask()](#examples-of-inserttask)
-      - [DELETE Requests](#delete-requests)
-        - [Examples of deleteOne()](#examples-of-deleteone)
-    - [Examples of utilizing your CRUD operations](#examples-of-utilizing-your-crud-operations)
-    - [Things NOT to do](#things-not-to-do)
+* [Table of contents](#table-of-contents)
+* [Synopsis](#synopsis)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Authentication](#authentication)
+* [Unit testing](#unit-testing)
+* [Throttling](#throttling)
+* [Responses](#responses)
+* [Supported CRUD operations](#supported-crud-operations)
+    - [GET Requests](#get-requests)
+        - [Examples of `get()`](#examples-of-get)
+        - [Examples of `get(param)`](#examples-of-getparam)
+        - [Examples of `getByLocation`](#examples-of-getbylocation)
+    - [POST Requests](#post-requests)
+        - [Examples of `create()`](#examples-of-create)
+    - [PUT Requests](#put-requests)
+        - [Examples of `update()`](#examples-of-update)
+        - [Examples of `insertTask()`](#examples-of-inserttask)
+    - [DELETE Requests](#delete-requests)
+        - [Examples of `deleteOne()`](#examples-of-deleteone)
+- [Examples of utilizing your CRUD operations](#examples-of-crud-operations)
+- [Things NOT to do](#things-not-to-do)
 
 ## Synopsis
-
 The Onfleet Node.js library provides convenient access to the Onfleet API.
 
 ## Installation
-
 ```
 npm install @onfleet/node-onfleet
 ```
-
 For TypeScript, install the [typed definition](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/onfleet__node-onfleet):
-
 ```
 npm install @types/onfleet__node-onfleet
 ```
-
-(Kudos to @marcobeltempo for the contribution!)
+> Kudos to @marcobeltempo for the contribution!
 
 ## Usage
+Before using the API wrapper, you will need to obtain an API key from one of your organization's admins.
 
-Before using the API wrapper, you will need to obtain an API key from your organization admin. Creation and integration of API keys are performed through the [Onfleet dashboard](https://onfleet.com/dashboard#/manage).
+Creation and integration of API keys are performed through the [Onfleet dashboard](https://onfleet.com/dashboard#/manage).
 
-To start utilizing the Onfleet API, you simply need to create an Onfleet object with your API key:
-
+To start utilizing the library, you simply need to create an `Onfleet` object with your API key:
 ```js
-const onfleet = new Onfleet("<api_key>");
+const onfleetApi = new Onfleet("<your_api_key>");
 ```
 
-As an optional field, you can introduce a customized timeout that is less than the default 70000ms (default Onfleet API timeout) by providing a 2nd parameter:
+Optionally, you can introduce a customized timeout that is less than the default Onfleet API timeout (70,000 ms) by providing a 2nd parameter:
 
 ```js
-const onfleet = new Onfleet("<api_key>", 30000); // This will set your wrappers to timeout at 30000ms instead of 70000ms
+const onfleetApi = new Onfleet("<your_api_key>", 30000);
 ```
 
-As an optional field, you can introduce an options object for [Bottleneck](https://www.npmjs.com/package/bottleneck).
+Optionally again, you can introduce an options object for [Bottleneck](https://www.npmjs.com/package/bottleneck) as a 3rd parameter:
 
 ```js
-const onfleet = new Onfleet("<api_key>", 30000, {
-  LIMITER_RESERVOIR: 10, // default 20
-  LIMITER_WAIT_UPON_DEPLETION: 20000, // default 10000
-  LIMITER_MAX_CONCURRENT: 5, // default 1
-  LIMITER_MIN_TIME: 50, // default 50
+const onfleetApi = new Onfleet("<your_api_key>", 30000, {
+  LIMITER_RESERVOIR: 10,  // Default: 20
+  LIMITER_WAIT_UPON_DEPLETION: 20000,  // Default: 10000
+  LIMITER_MAX_CONCURRENT: 5,  // Default: 1
+  LIMITER_MIN_TIME: 50,  // Default: 50
 });
 ```
 
 ### Authentication
-
-Once the Onfleet object is created, you can use a utility function to test on the authentication endpoint, this function returns a boolean:
-
+Once the `Onfleet` object is created, you can test on the authentication endpoint:
 ```js
-onfleet.verifyKey();
+onfleet.verifyKey();  // Returns a boolean
 ```
 
-Once the Onfleet object is created, you will get access to all the API endpoints as documented in the [Onfleet API documentation](https://docs.onfleet.com/). Here are some usage case:
-
 ### Unit Testing
-
 Run `npm test`
 
 ### Throttling
+Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys. Learn more about it [here](https://docs.onfleet.com/reference#throttling).
 
-Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys, learn more about it [here](https://docs.onfleet.com/reference#throttling). We have implemented a limiter on the wrapper itself to avoid you from unintentionally exceeding your rate limitations and eventually be banned for.
+We have also implemented a limiter on this library to avoid you from unintentionally exceeding your rate limitations and eventually be banned for.
 
 ### Responses
-
-The `node-onfleet` API wrapper returns the body of a [Response object](https://developer.mozilla.org/en-US/docs/Web/API/Response).
+Responses of this library are instances of [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
 
 ### Supported CRUD Operations
+Here are the operations available for each entity:
 
-The base URL for the Onfleet API is `https://onfleet.com/api/v2`, here are the supported CRUD operations for each endpoint:
-
-|                                `<endpoint>`                                |                               GET                               |                                            POST                                            |                 PUT                  |    DELETE     |
-| :------------------------------------------------------------------------: | :-------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :----------------------------------: | :-----------: |
-| [Admins/Administrators](https://docs.onfleet.com/reference#administrators) |                              get()                              |                              create(obj), matchMetadata(obj)                               |           update(id, obj)            | deleteOne(id) |
-|        [Containers](https://docs.onfleet.com/reference#containers)         | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations')  |                                             x                                              |           update(id, obj)            |       x       |
-|      [Destinations](https://docs.onfleet.com/reference#destinations)       |                             get(id)                             |                              create(obj), matchMetadata(obj)                               |                  x                   |       x       |
-|              [Hubs](https://docs.onfleet.com/reference#hubs)               |                              get()                              |                              create(obj)                                                             |                  update(id, obj)                    |       x       |
-|      [Organization](https://docs.onfleet.com/reference#organizations)      |                         get(), get(id)                          |                                             x                                              |         insertTask(id, obj)          |       x       |
-|        [Recipients](https://docs.onfleet.com/reference#recipients)         |         get(id), get(name, 'name'), get(phone, 'phone')         |                              create(obj), matchMetadata(obj)                               |           update(id, obj)            |       x       |
-|             [Tasks](https://docs.onfleet.com/reference#tasks)              |          get(query), get(id), get(shortId, 'shortId')           | create(obj), clone(id), forceComplete(id), batch(obj), autoAssign(obj), matchMetadata(obj) |           update(id, obj)            | deleteOne(id) |
-|             [Teams](https://docs.onfleet.com/reference#teams)              |              get(), get(id), getWorkerEta(id, obj)              |                             create(obj), autoDispatch(id, obj)                             | update(id, obj), insertTask(id, obj) | deleteOne(id) |
-|          [Webhooks](https://docs.onfleet.com/reference#webhooks)           |                              get()                              |                                        create(obj)                                         |                  x                   | deleteOne(id) |
-|           [Workers](https://docs.onfleet.com/reference#workers)            | get(), get(query), get(id), getByLocation(obj), getSchedule(id) |                   create(obj), setSchedule(id, obj), matchMetadata(obj)                    | update(id, obj), insertTask(id, obj) | deleteOne(id) |
+| Entity | GET | POST | PUT | DELETE |
+| :-: | :-: | :-: | :-: | :-: |
+| [Admins/Administrators](https://docs.onfleet.com/reference#administrators) | get() | create(obj), matchMetadata(obj) | update(id, obj) | deleteOne(id) |
+| [Containers](https://docs.onfleet.com/reference#containers) | get(id, 'workers'), get(id, 'teams'), get(id, 'organizations') | x | update(id, obj) | x |
+| [Destinations](https://docs.onfleet.com/reference#destinations) | get(id) | create(obj), matchMetadata(obj) | x | x |
+| [Hubs](https://docs.onfleet.com/reference#hubs) | get() | create(obj) | update(id, obj) | x |
+| [Organization](https://docs.onfleet.com/reference#organizations) | get(), get(id) | x | insertTask(id, obj) | x |
+| [Recipients](https://docs.onfleet.com/reference#recipients) | get(id), get(name, 'name'), get(phone, 'phone') | create(obj), matchMetadata(obj) | update(id, obj) | x |
+| [Tasks](https://docs.onfleet.com/reference#tasks) | get(query), get(id), get(shortId, 'shortId') | create(obj), clone(id), forceComplete(id), batch(obj), autoAssign(obj), matchMetadata(obj) | update(id, obj) | deleteOne(id) |
+| [Teams](https://docs.onfleet.com/reference#teams) | get(), get(id), getWorkerEta(id, obj) | create(obj), autoDispatch(id, obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
+| [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
+| [Workers](https://docs.onfleet.com/reference#workers) | get(), get(query), get(id), getByLocation(obj), getSchedule(id) | create(obj), setSchedule(id, obj), matchMetadata(obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
 
 #### GET Requests
-
-To get all the documents within an endpoint, this returns a Promise containing an array of results:
-
+To get all the documents within an endpoint, this returns a `Promise` containing an array of results:
 ```js
 get();
-get(<queryParam> (optional));
 ```
 
-##### Examples of get()
-
+##### Examples of `get()`
 ```js
-onfleet.workers.get().then((resultArray) => {
-  // do something with the array containing all workers
-});
+onfleetApi.workers.get().then((results) => { /* ... */ });
+onfleetApi.workers.get({ queryParams }).then((results) => { /* ... */ });
 ```
 
-Option to use query parameters for some certain endpoints, refer back to API documents for endpoints that support query parameters:
-
+Optionally you can send a JSON object of query params for some certain endpoints.  
+Refer back to [API documentation](https://docs.onfleet.com/) for endpoints that support query parameters.
 ```js
-onfleet.workers.get({ phones: "<phone_number>" }).then((res) => {
-  // do something with the one result found
-});
-onfleet.tasks.get({ from: "<from_time>", to: "<to_time>" }).then((result) => {
-  // do something with the results found
-});
+onfleetApi.workers.get({ phones: "<phone_number>" }).then((results) => { /* ... */ });
+
+onfleetApi.tasks.get({ from: "<from_time>", to: "<to_time>" }).then((results) => { /* ... */ });
 ```
 
-> **Note:** Query parameters can be in any forms as long as it is a JSON object, for example: `{ 'analytics': 'true' }` works, so as `{ analytics: true }`
+> Both `{ 'analytics': 'true' }` and `{ analytics: true }` work as query params since they represent a valid JSON object
 
-To get one of the document within an endpoint, if optional _paramName_ is not provided, wrapper will search by ID. If _paramName_ is provided, it will search by _paramName_:
-
+To get one of the documents within an endpoint, if the optional _paramName_ is not provided, the library will search by ID. If _paramName_ is provided, it will search by _paramName_:
 ```js
 get(<parameter>, <paramName> (optional), <queryParam> (optional));
 ```
 
-Options for _paramName_: id, name, phone, shortId (see table above).
+_paramName_ can be any of (see table above):
+- `id`
+- `name`
+- `phone`
+- `shortId`
 
-##### Examples of get(param)
-
+##### Examples of `get(param)`
 ```js
-/**
- * GET for Workers
- */
-onfleet.workers.get("<24_digit_id>").then((result) => {
-  // do something with the one result found
-});
-onfleet.workers.get("<24_digit_id>", { analytics: true }).then((result) => {
-  // do something with the one result found
-});
+onfleetApi.workers.get("<24_digit_ID>").then((result) => { /* ... */ });
+onfleetApi.workers.get("<24_digit_ID>", { analytics: true }).then((result) => { /* ... */ });
 
-/**
- * GET for Tasks
- */
-onfleet.tasks.get("<shortId>", "shortId").then((result) => {
-  // do something with the one result found
-});
+onfleetApi.tasks.get("<shortId>", "shortId").then((result) => { /* ... */ });
 
-/**
- * GET for Recipients
- */
-onfleet.recipients.get("<phone_number>", "phone").then((result) => {
-  // do something with the one result found
-});
-onfleet.recipients.get("<recipient_name>", "name").then((result) => {
-  // do something with the one result found
-});
-onfleet.recipients
+onfleetApi.recipients.get("<phone_number>", "phone").then((result) => { /* ... */ });
+onfleetApi.recipients.get("<recipient_name>", "name").then((result) => { /* ... */ });
+onfleetApi.recipients
   .get("<recipient_name>", "name", { skipPhoneNumberValidation: true })
-  .then((result) => {
-    // do something with the one result found
-  });
+  .then((result) => { /* ... */ });
 
-/**
- * GET for Containers
- */
-onfleet.containers.get("<24_digit_id>", "workers").then((result) => {
-  // do something with the one result found
-});
-onfleet.containers.get("<24_digit_id>", "teams").then((result) => {
-  // do something with the one result found
-});
-onfleet.containers.get("<24_digit_id>", "organizations").then((result) => {
-  // do something with the one result found
-});
+onfleetApi.containers.get("<24_digit_ID>", "workers").then((result) => { /* ... */ });
+onfleetApi.containers.get("<24_digit_ID>", "teams").then((result) => {{ /* ... */ });
+onfleetApi.containers.get("<24_digit_ID>", "organizations").then((result) => { /* ... */ });
 ```
 
 To get a driver by location, use the `getByLocation` function:
-
 ```js
-getByLocation(<queryParam>);
+getByLocation({ queryParams });
 ```
 
-##### Examples of getByLocation
-
+##### Examples of `getByLocation`
 ```js
-const location = {
+const locationParams = {
   longitude: -122.404,
   latitude: 37.789,
   radius: 10000,
 };
 
-onfleet.workers.getByLocation(location).then((result) => {
-  // shows the on-duty workers at the specific location
-});
+onfleetApi.workers.getByLocation(locationParams).then((results) => { /* ... */ });
 ```
 
 #### POST Requests
-
 To create a document within an endpoint:
-
-```js
-create(<object>);
+```js{
+create({ data }});
 ```
 
-##### Examples of create()
-
+##### Examples of `create()`
 ```js
-const driver = {
-  name: "A Swartz",
-  phone: "617-342-8853",
-  teams: ["W*8bF5jY11Rk05E0bXBHiGg2"],
+const data = {
+  name: "John Driver",
+  phone: "+16173428853",
+  teams: ["<team_ID>", "<team_ID> (optional)", ...],
   vehicle: {
     type: "CAR",
     description: "Tesla Model 3",
@@ -250,117 +199,116 @@ const driver = {
     color: "purple",
   },
 };
-onfleet.workers.create(driver);
+
+onfleetApi.workers.create(data);
 ```
 
-Extended POST requests include `clone`, `forceComplete`, `batchCreate`, `autoAssign` on the tasks endpoint, `setSchedule` on the workers endpoint, `matchMetadata` on all supported entity endpoints, and `autoDispatch` on the teams endpoint:
+Extended POST requests include `clone`, `forceComplete`, `batchCreate`, `autoAssign` on the *Tasks* endpoint; `setSchedule` on the *Workers* endpoint; `autoDispatch` on the *Teams* endpoint; and `matchMetadata` on all supported entities. For instance:
 
 ```js
-onfleet.tasks.clone('<24_digit_id>');
-onfleet.tasks.forceComplete('<24_digit_id>', '<completion_details>');
-onfleet.tasks.batchCreate('<task_object_array>');
-onfleet.tasks.autoAssign('<auto_assign_object>');
-onfleet.<entities>.matchMetdata('<an_array_of_metadata_objects>');
+onfleetApi.tasks.clone('<24_digit_ID>');
+onfleetApi.tasks.forceComplete('<24_digit_ID>', { data });
+onfleetApi.tasks.batchCreate({ data });
+onfleetApi.tasks.autoAssign({ data });
 
-onfleet.workers.setSchedule('<24_digit_id>', newSchedule);
+onfleetApi.workers.setSchedule('<24_digit_ID>', { data });
 
-onfleet.teams.autoDispatch('<24_digit_id>', dispatchConfig);
+onfleetApi.teams.autoDispatch('<24_digit_ID>', { data });
+
+onfleetApi.<entity_name_pluralized>.matchMetdata({ data });
 ```
 
-For more details, check our documentation on [clone](https://docs.onfleet.com/reference#clone-task), [forceComplete](https://docs.onfleet.com/reference#complete-task), [batchCreate](https://docs.onfleet.com/reference#create-tasks-in-batch), [autoAssign](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [setSchedule](https://docs.onfleet.com/reference#set-workers-schedule), [matchMetadata](https://docs.onfleet.com/reference#querying-by-metadata), and [autoDispatch](https://docs.onfleet.com/reference#team-auto-dispatch)
+For more details, check our documentation on [`clone`](https://docs.onfleet.com/reference#clone-task), [`forceComplete`](https://docs.onfleet.com/reference#complete-task), [`batchCreate`](https://docs.onfleet.com/reference#create-tasks-in-batch), [`autoAssign`](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [`setSchedule`](https://docs.onfleet.com/reference#set-workers-schedule), [`matchMetadata`](https://docs.onfleet.com/reference#querying-by-metadata), and [`autoDispatch`](https://docs.onfleet.com/reference#team-auto-dispatch).
 
 #### PUT Requests
-
 To update a document within an endpoint:
-
 ```js
-update(<id>, <object>);
+update("<24_digit_ID>", { data });
 ```
 
-##### Examples of update()
-
+##### Examples of `update()`
 ```js
-const updateBody = {
-  name: "New Driver Name",
+const newData = {
+  name: "Jack Driver",
 };
-onfleet.workers.update("<24_digit_id>", updateBody);
+
+onfleetApi.workers.update("<24_digit_ID>", newData);
 ```
 
-##### Examples of insertTask()
-
+##### Examples of `insertTask()`
 ```js
-onfleet.workers
-  .insertTask("kAQ*G5hnqlOq4jVvwtGNuacl", insertedTask)
-  .then((result) => {
-    // do something
-  });
+onfleetApi.workers.insertTask("<24_digit_ID>", { data }).then((result) => { /* ... */ });
 ```
 
 #### DELETE Requests
-
 To delete a document within an endpoint:
-
 ```js
-deleteOne(<id>);
+deleteOne("<24_digit_ID>");
 ```
 
-##### Examples of deleteOne()
-
+##### Examples of `deleteOne()`
 ```js
-onfleet.workers.deleteOne("<24_digit_id>");
+onfleetApi.workers.deleteOne("<24_digit_ID>");
 ```
 
-### Examples of utilizing your CRUD operations
+### Examples of CRUD operations
 
-Get all the recipients (if it exist):
-
-```js
-onfleet.tasks
-  .get({ from: "1557936000000", to: "1558022400000" })
-  .then((res) => {
-    for (let element of res) {
-      if (element.recipients[0] !== undefined) {
-        // do something with the recipients
+- Get all the recipients:
+  ```js
+  onfleetApi.tasks
+    .get({ from: "1557936000000", to: "1558022400000" })
+    .then((tasks) => {
+      for (let task of tasks) {
+        if (task.recipients[0] !== undefined) {
+          // Do something with the recipients
+        }
       }
+    })
+    .catch((err) => { /* ... */ });
+  ```
+
+- `async`/`await` can also be used like this:
+  ```js
+  async function findAllWorkers() {
+    try {
+      let response = await onfleetApi.workers.get();
+      // Do something with the response
     }
-  })
-  .catch((err) => {
-    // do something with the error
-  });
-```
-
-Async/await can also be used in this following case:
-
-```js
-async function findAllWorkers() {
-  try {
-    let response = await onfleet.workers.get();
-    // do something with the response
-  } catch (err) {
-    throw new Error(err);
+    catch (err) { /* ... */ }
   }
-}
 
-findAllWorkers();
-```
+  findAllWorkers();
+  ```
 
 ### Things NOT to do
 
-Inefficient pattern, use metadata instead:
+- Inefficient pattern, use metadata instead:
+  ```js
+  // DONT
+  onfleetApi.workers
+    .get()
+    .then((workers) => {
+      for (let worker of workers) {
+        if (worker.name == "some_name") {
+          onfleet.teams.get(worker.teams[0]).then((result) => {
+            // Do something with the team
+          });
+        }
+      }
+    })
+    .catch((err) => { /* ... */ });
 
-```js
-onfleet.workers
-  .get()
-  .then((res) => {
-    for (let element of res) {
-      if (element.name == "some_name") {
-        onfleet.teams.get(element.teams[0]).then((result) => {
-          // do something with the team
+  // DO
+  onfleetApi.workers
+    .matchMetadata({ ??? })
+    .then((workers) => {
+      for (let worker of workers) {
+        onfleet.teams.get(worker.teams[0]).then((result) => {
+          // Do something with the team
         });
       }
-    }
-  })
-  .catch((err) => {
-    // do something with the error
-  });
-```
+    })
+    .catch((err) => { /* ... */ });
+  ```
+
+*Go to [top](#onfleet-nodejs-wrapper)*.
