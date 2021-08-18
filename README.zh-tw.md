@@ -15,7 +15,6 @@
 欲了解本開源專案的背景，請參閱[我們的部落格](https://onfleet.com/blog/api-wrappers-explained/)，如果對於Onfleet應用程式介面或是我們產品有任何的問題，歡迎[在此留言](https://github.com/onfleet/pyonfleet/issues)或直接聯繫 support@onfleet.com。
 
 ### 目錄
-
 + [目錄](#目錄)
 * [概要](#概要)
 * [安裝](#安裝)
@@ -71,10 +70,10 @@ const onfleetApi = new Onfleet("<your_api_key>", 30000);
 作為可選字段，您可以引入一個用於 Bottleneck 的選項對象 [Bottleneck](https://www.npmjs.com/package/bottleneck).
 ```js
 const onfleetApi = new Onfleet("<your_api_key>", 30000, {
-  LIMITER_RESERVOIR: 10,  // Default: 20
+  LIMITER_RESERVOIR: 10,               // Default: 20
   LIMITER_WAIT_UPON_DEPLETION: 20000,  // Default: 10000
-  LIMITER_MAX_CONCURRENT: 5,  // Default: 1
-  LIMITER_MIN_TIME: 50,  // Default: 50
+  LIMITER_MAX_CONCURRENT: 5,           // Default: 1
+  LIMITER_MIN_TIME: 50,                // Default: 50
 });
 ```
 
@@ -87,7 +86,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 當Onfleet物件成功被創建，而金鑰又是合法的，您會獲得訪問以下各endpoint資源的函式。欲獲得各endpoint資源的定義，請洽[Onfleet官方應用程式介面文件](http://docs.onfleet.com/)：
 
 ### 單元測試
-執行 `npm test`.
+`npm test`
 
 ### API速限
 原則上API的速限為每秒鐘20次請求，詳情請參考[官方文件](https://docs.onfleet.com/reference#throttling)。在此模組內我們也提供了限速，以避免您無意間超過了API請求的速限而導致帳號被禁的狀況。

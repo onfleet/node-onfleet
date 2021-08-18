@@ -16,7 +16,6 @@ Visit our blog post on the [API wrapper project](https://onfleet.com/blog/api-wr
 If you have any questions, please reach us by submitting an issue [here](https://github.com/onfleet/node-onfleet/issues) or contact support@onfleet.com.
 
 ### Table of contents
-
 * [Table of contents](#table-of-contents)
 * [Synopsis](#synopsis)
 * [Installation](#installation)
@@ -64,19 +63,17 @@ const onfleetApi = new Onfleet("<your_api_key>");
 ```
 
 Optionally, you can introduce a customized timeout that is less than the default Onfleet API timeout (70,000 ms) by providing a 2nd parameter:
-
 ```js
 const onfleetApi = new Onfleet("<your_api_key>", 30000);
 ```
 
 Optionally again, you can introduce an options object for [Bottleneck](https://www.npmjs.com/package/bottleneck) as a 3rd parameter:
-
 ```js
 const onfleetApi = new Onfleet("<your_api_key>", 30000, {
-  LIMITER_RESERVOIR: 10,  // Default: 20
+  LIMITER_RESERVOIR: 10,               // Default: 20
   LIMITER_WAIT_UPON_DEPLETION: 20000,  // Default: 10000
-  LIMITER_MAX_CONCURRENT: 5,  // Default: 1
-  LIMITER_MIN_TIME: 50,  // Default: 50
+  LIMITER_MAX_CONCURRENT: 5,           // Default: 1
+  LIMITER_MIN_TIME: 50,                // Default: 50
 });
 ```
 
@@ -87,7 +84,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 ```
 
 ### Unit Testing
-Run `npm test`.
+`npm test`
 
 ### Throttling
 Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys. Learn more about it [here](https://docs.onfleet.com/reference#throttling).
@@ -140,7 +137,7 @@ To get one of the documents within an endpoint, if the optional _paramName_ is n
 get(<parameter>, <paramName> (optional), <queryParam> (optional));
 ```
 
-_paramName_ can be any of (see table above):
+_paramName_ can be any of:
 - `id`
 - `name`
 - `phone`

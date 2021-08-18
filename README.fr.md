@@ -17,7 +17,6 @@ Visitez notre article de blog sur le [projet de wrapper API](https://onfleet.com
 Si vous avez des questions, veuillez contacter Onfleet en soumettant un problème [ici](https://github.com/onfleet/node-onfleet/issues) ou contactez support@onfleet.com.
 
 ### Table des matières
-
 * [Table des matières](#table-des-matières)
 * [Synopsis](#synopsis)
 * [Installation](#installation)
@@ -70,13 +69,12 @@ const onfleetApi = new Onfleet("<your_api_key>", 30000);
 ```
 
 En tant que champ facultatif, vous pouvez introduire un objet d'options pour [Bottleneck](https://www.npmjs.com/package/bottleneck).
-
 ```js
 const onfleetApi = new Onfleet("<your_api_key>", 30000, {
-  LIMITER_RESERVOIR: 10,  // Default: 20
+  LIMITER_RESERVOIR: 10,               // Default: 20
   LIMITER_WAIT_UPON_DEPLETION: 20000,  // Default: 10000
-  LIMITER_MAX_CONCURRENT: 5,  // Default: 1
-  LIMITER_MIN_TIME: 50,  // Default: 50
+  LIMITER_MAX_CONCURRENT: 5,           // Default: 1
+  LIMITER_MIN_TIME: 50,                // Default: 50
 });
 ```
 
@@ -89,7 +87,7 @@ onfleet.verifyKey();  // Returns a boolean
 Une fois que l'objet Onfleet est créé, vous aurez accès à tous les points de terminaison de l'API, comme indiqué dans la [Documentation de l'API Onfleet](http://docs.onfleet.com/). Voici quelques cas d'utilisation:
 
 ### Tests unitaires
-Exécuter `npm test`.
+`npm test`
 
 ### Étranglement
 La limitation de débit est appliquée par l'API avec un seuil de 20 demandes par seconde pour toutes les clés d'API de votre organisation. Pour en savoir plus, [cliquez ici](https://docs.onfleet.com/reference#throttling). 
@@ -141,7 +139,7 @@ Pour obtenir l'un des documents dans un noeud final, si _paramName_ facultatif n
 get(<parameter>, <paramName> (optional), <queryParam> (optional));
 ```
 
-Options pour _paramName_ (voir tableau ci-dessus):
+Options pour _paramName_:
 - `id`
 - `name`
 - `phone`
