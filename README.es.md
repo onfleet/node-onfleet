@@ -16,7 +16,7 @@ Los invitamos a visitar nuestra publicación sobre el [proyecto de librerías pa
 En caso de preguntas, pueden contactarnos a través de un issue [aquí](https://github.com/onfleet/pyonfleet/issues) o escribirnos a support@onfleet.com.
 
 ## Tabla de contenidos
-* [Table of contents](#table-of-contents)
+* [Table of contents](#tabla-de-contenidos)
 * [Sinopsis](#sinopsis)
 * [Instalación](#instalación)
 * [Uso](#uso)
@@ -57,7 +57,7 @@ Antes de usar la librería, es indispensable obtener una llave para la API a tra
 
 La creación e integración de llaves se realiza a través del [panel principal de Onfleet](https://onfleet.com/dashboard#/manage).
 
-Para utilizar la librería solo tenemos que crear uns instancia de `Onfleet` usando la llave:
+Para utilizar la librería sólo tenemos que crear uns instancia de `Onfleet` usando la llave:
 ```js
 const onfleetApi = new Onfleet("<your_api_key>");
 ```
@@ -89,7 +89,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 ### Límites
 La API impone un límite de 20 peticiones por segundo entre todas las peticiones de todas las llaves de la organización. Más detalles [aquí](https://docs.onfleet.com/reference#throttling).
 
-La librearía también implementa un limitador para prevenir excesos accidentales de los límites y, eventualmente, posibles sanciones.
+La librería también implementa un limitador para prevenir excesos accidentales de los límites y, eventualmente, posibles sanciones.
 
 ### Respuestas
 Las respuestas de esta librería son instancias de [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
@@ -132,7 +132,6 @@ onfleetApi.tasks.get({ from: "<from_time>", to: "<to_time>" }).then((results) =>
 
 > Tanto `{ 'analytics': 'true' }` como `{ analytics: true }` funcionan parámetros de búsqueda porque ambos representan un objeto JSON válido
 
-To get one of the documents within an endpoint, if the optional _paramName_ is not provided, the library will search by ID. If _paramName_ is provided, it will search by _paramName_:
 Para obtener uno de los elementos de un endpoint, si el parámetreo opcional _paramName_ no es suministrado, la libraría buscará por ID. Si _paramName_ es suministrado, se utilizará _paramName_:
 ```js
 get(<parameter>, <paramName> (optional), <queryParam> (optional));
