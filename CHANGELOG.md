@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Rate limiting bug (#28)
 
-## [1.1.1] - 2020-07-10
+## [1.1.1] - 2020-10-07
 ### Changed
 - Update Bottleneck constants to better fit real-life API usage (#23)
 - Update `node-fetch` dependency version
@@ -44,21 +44,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.9] - 2020-05-27
 ### Changed
+- Update package.json
+
+## [1.0.8] - 2020-05-27
+### Changed
 - Bumping universal timeout from 10s to 70s to match API actual timeout limit (#17)
 ### Fixed
 - Content type typo
 
-## [1.0.7] - 2020-05-05
+## [1.0.7] - 2020-05-06
 ### Changed
 - Rate limiting approved
+- Update documentation to include rate limiting
 ### Fixed
 - Security update for package.json
-
-## [1.0.6] - 2020-03-06
-### Added
-- Rate limiting
-### Changed
-- Update documentation to include rate limiting
 
 ## [1.0.5] - 2019-12-30
 ### Added
@@ -91,8 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.1.0]: https://github.com/onfleet/node-onfleet/compare/v1.0.9...v1.1.0
 [1.0.9]: https://github.com/onfleet/node-onfleet/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/onfleet/node-onfleet/compare/v1.0.7...v1.0.8
-[1.0.7]: https://github.com/onfleet/node-onfleet/compare/v1.0.6...v1.0.7
-[1.0.6]: https://github.com/onfleet/node-onfleet/compare/v1.0.5...v1.0.6
+[1.0.7]: https://github.com/onfleet/node-onfleet/compare/v1.0.5...v1.0.7
 [1.0.5]: https://github.com/onfleet/node-onfleet/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/onfleet/node-onfleet/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/onfleet/node-onfleet/compare/v1.0.2...v1.0.3
