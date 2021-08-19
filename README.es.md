@@ -16,7 +16,7 @@ Los invitamos a visitar nuestra publicación sobre el [proyecto de librerías pa
 En caso de preguntas, pueden contactarnos a través de un issue [aquí](https://github.com/onfleet/pyonfleet/issues) o escribirnos a support@onfleet.com.
 
 ## Tabla de contenidos
-* [Table of contents](#tabla-de-contenidos)
+* [Tabla de contenidos](#tabla-de-contenidos)
 * [Sinopsis](#sinopsis)
 * [Instalación](#instalación)
 * [Uso](#uso)
