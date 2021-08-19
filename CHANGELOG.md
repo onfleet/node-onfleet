@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.6] - 2021-08-09
+### Changed
+- Update package.json
+### Fixed
+- Bugfix for `workers.getByLocation`
+
 ## [1.2.5] - 2021-06-28
 ### Added
 - POST and PUT operations on Hubs endpoint
@@ -79,7 +85,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release on npm
 
-[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.5...HEAD
+[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.6...HEAD
+[1.2.6]: https://github.com/onfleet/node-onfleet/compare/v1.2.5...v1.2.6
 [1.2.5]: https://github.com/onfleet/node-onfleet/compare/v1.2.4...v1.2.5
 [1.2.4]: https://github.com/onfleet/node-onfleet/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/onfleet/node-onfleet/compare/v1.2.2...v1.2.3
