@@ -2,10 +2,10 @@
 
 ![Build](https://img.shields.io/travis/onfleet/node-onfleet.svg?style=popout-square)
 [![License](https://img.shields.io/github/license/onfleet/node-onfleet.svg?style=popout-square)](https://github.com/onfleet/node-onfleet/blob/master/LICENSE)
+[![Latest version](https://img.shields.io/npm/v/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
+![Top language](https://img.shields.io/github/languages/top/onfleet/node-onfleet.svg?style=popout-square)
 ![Dependencies](https://img.shields.io/david/onfleet/node-onfleet.svg?style=popout-square)
-[![npm - Version](https://img.shields.io/npm/v/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
-![GitHub - Top language](https://img.shields.io/github/languages/top/onfleet/node-onfleet.svg?style=popout-square)
-[![npm - Downloads](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
+[![Downloads](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
 
 > *Lisez ce document dans une autre langue*:  
 > [English](https://github.com/onfleet/node-onfleet/blob/master/README.md)  
