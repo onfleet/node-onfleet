@@ -1,6 +1,6 @@
 {
   "name": "@onfleet/node-onfleet",
-  "version": "1.2.6",
+  "version": "1.2.61",
   "description": "Official client library for accessing the Onfleet API",
   "main": "index.js",
   "scripts": {
