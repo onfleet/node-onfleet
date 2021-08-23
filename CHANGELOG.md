@@ -6,9 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.6] - 2021-08-09
+## [1.2.7] - 2021-08-23
+### Added
+- Enable passing a baseURL param to `Onfleet`'s constructor
+- README in ES
+- CHANGELOG
 ### Changed
-- Update package.json
+- Bump `path-parse` from 1.0.6 to 1.0.7
+
+## [1.2.6] - 2021-08-09
 ### Fixed
 - Bugfix for `workers.getByLocation`
 
@@ -50,7 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.9] - 2020-05-27
 ### Changed
-- Update package.json
+- Misc improvements
 
 ## [1.0.8] - 2020-05-27
 ### Changed
@@ -85,7 +91,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release on npm
 
-[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.6...HEAD
+[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.7...HEAD
+[1.2.6]: https://github.com/onfleet/node-onfleet/compare/v1.2.6...v1.2.7
 [1.2.6]: https://github.com/onfleet/node-onfleet/compare/v1.2.5...v1.2.6
 [1.2.5]: https://github.com/onfleet/node-onfleet/compare/v1.2.4...v1.2.5
 [1.2.4]: https://github.com/onfleet/node-onfleet/compare/v1.2.3...v1.2.4
