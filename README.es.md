@@ -7,67 +7,67 @@
 ![Dependencies](https://img.shields.io/david/onfleet/node-onfleet.svg?style=popout-square)
 [![Downloads](https://img.shields.io/npm/dt/@onfleet/node-onfleet.svg?style=popout-square)](https://www.npmjs.com/package/@onfleet/node-onfleet)
 
-> *Read this document in another language*:  
+> *Consulta este documento en otro idioma*:  
+> [English](https://github.com/onfleet/node-onfleet/blob/master/README.md)  
 > [Français](https://github.com/onfleet/node-onfleet/blob/master/README.fr.md)  
 > [正體中文](https://github.com/onfleet/node-onfleet/blob/master/README.zh-tw.md)  
-> [Español](https://github.com/onfleet/node-onfleet/blob/master/README.es.md)  
 
-Visit our blog post on the [API wrapper project](https://onfleet.com/blog/api-wrappers-explained/) to learn more about our initiatives.  
-If you have any questions, please reach us by submitting an issue [here](https://github.com/onfleet/node-onfleet/issues) or contact support@onfleet.com.
+Los invitamos a visitar nuestra publicación sobre el [proyecto de librerías para la API](https://onfleet.com/blog/api-wrappers-explained/) para conocer más sobre nuestras iniciativas.  
+En caso de preguntas, pueden contactarnos a través de un issue [aquí](https://github.com/onfleet/pyonfleet/issues) o escribirnos a support@onfleet.com.
 
-### Table of contents
-* [Table of contents](#table-of-contents)
-* [Synopsis](#synopsis)
-* [Installation](#installation)
-* [Usage](#usage)
-    - [Authentication](#authentication)
-    - [Unit testing](#unit-testing)
-    - [Throttling](#throttling)
-    - [Responses](#responses)
-    - [Supported CRUD operations](#supported-crud-operations)
-        * [GET Requests](#get-requests)
-            - [Examples of `get()`](#examples-of-get)
-            - [Examples of `get(param)`](#examples-of-getparam)
-            - [Examples of `getByLocation`](#examples-of-getbylocation)
-        * [POST Requests](#post-requests)
-            - [Examples of `create()`](#examples-of-create)
-        * [PUT Requests](#put-requests)
-            - [Examples of `update()`](#examples-of-update)
-            - [Examples of `insertTask()`](#examples-of-inserttask)
-        * [DELETE Requests](#delete-requests)
-            - [Examples of `deleteOne()`](#examples-of-deleteone)
-    - [Examples of utilizing your CRUD operations](#examples-of-utilizing-your-crud-operations)
-    - [Things NOT to do](#things-not-to-do)
+## Tabla de contenidos
+* [Tabla de contenidos](#tabla-de-contenidos)
+* [Sinopsis](#sinopsis)
+* [Instalación](#instalación)
+* [Uso](#uso)
+    - [Autenticación](#autenticación)
+    - [Pruebas unitarias](#pruebas-unitarias)
+    - [Límites](#límites)
+    - [Respuestas](#respuestas)
+    - [Operaciones CRUD soportadas](#operaciones-crud-soportadas)
+        * [Peticiones GET](#peticiones-get)
+            - [Ejemplos de `get()`](#ejemplos-de-get)
+            - [Ejemplos de `get(parametro)`](#ejemplos-de-getparametro)
+            - [Ejemplos de `getByLocation`](#ejemplos-de-getbylocation)
+        * [Peticiones POST](#peticiones-post)
+            - [Ejemplos de `create()`](#ejemplos-de-create)
+        * [Peticiones PUT](#peticiones-put)
+            - [Ejemplos de `update()`](#ejemplos-de-update)
+            - [Ejemplos de `insertTask()`](#ejemplos-de-inserttask)
+        * [Peticiones DELETE](#peticiones-delete)
+            - [Ejemplos de `deleteOne()`](#ejemplos-de-deleteone)
+    - [Ejemplos de cómo utilizar las operaciones CRUD](#ejemplos-de-como-utilizar-las-operaciones-crud)
+    - [Qué NO hacer](#que-no-hacer)
 
-## Synopsis
-The Onfleet Node.js library provides convenient access to the Onfleet API.
+## Sinopsis
+La librería en Node.js de Onfleet nos permite un acceso fácil y cómodo a la API de Onfleet.
 
-## Installation
+## Instalación
 ```
 npm install @onfleet/node-onfleet
 ```
-For TypeScript, install the [typed definition](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/onfleet__node-onfleet):
+Para TypeScript, debemos instalar la [definición tipada](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/onfleet__node-onfleet):
 ```
 npm install @types/onfleet__node-onfleet
 ```
-> Kudos to @marcobeltempo for the contribution!
+> ¡Agradecimientos especiales a @marcobeltempo por la contribución!
 
-## Usage
-Before using the API wrapper, you will need to obtain an API key from one of your organization's admins.
+## Uso
+Antes de usar la librería, es indispensable obtener una llave para la API a través de alguno de los administradores de la organización a la que pertenecemos.
 
-Creation and integration of API keys are performed through the [Onfleet dashboard](https://onfleet.com/dashboard#/manage).
+La creación e integración de llaves se realiza a través del [panel principal de Onfleet](https://onfleet.com/dashboard#/manage).
 
-To start utilizing the library, you simply need to create an `Onfleet` object with your API key:
+Para utilizar la librería sólo tenemos que crear uns instancia de `Onfleet` usando la llave:
 ```js
 const onfleetApi = new Onfleet("<your_api_key>");
 ```
 
-Optionally, you can introduce a customized timeout that is less than the default Onfleet API timeout (70,000 ms) by providing a 2nd parameter:
+Opcionalmente, se puede personalizar el _timeout_ para hacerlo menor que el valor por defecto de la API de Onfleet (70,000 ms) suministrando un 2do parámetro:
 ```js
 const onfleetApi = new Onfleet("<your_api_key>", 30000);
 ```
 
-Optionally again, you can introduce an options object for [Bottleneck](https://www.npmjs.com/package/bottleneck) as a 3rd parameter:
+También de manera opcional, podemos personalizar las opciones de [Bottleneck](https://www.npmjs.com/package/bottleneck) utilizando un 3er parámetro:
 ```js
 const onfleetApi = new Onfleet("<your_api_key>", 30000, {
   LIMITER_RESERVOIR: 10,               // Default: 20
@@ -77,25 +77,25 @@ const onfleetApi = new Onfleet("<your_api_key>", 30000, {
 });
 ```
 
-### Authentication
-Once the `Onfleet` object is created, you can test on the authentication endpoint:
+### Autenticación
+Una vez tenemos la instancia de `Onfleet` podemos probar el endpoint de autenticación:
 ```js
 onfleetApi.verifyKey();  // Returns a boolean
 ```
 
-### Unit Testing
+### Pruebas unitarias
 `npm test`
 
-### Throttling
-Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys. Learn more about it [here](https://docs.onfleet.com/reference#throttling).
+### Límites
+La API impone un límite de 20 peticiones por segundo entre todas las peticiones de todas las llaves de la organización. Más detalles [aquí](https://docs.onfleet.com/reference#throttling).
 
-We have also implemented a limiter on this library to avoid you from unintentionally exceeding your rate limitations and eventually be banned for.
+La librería también implementa un limitador para prevenir excesos accidentales de los límites y, eventualmente, posibles sanciones.
 
-### Responses
-Responses of this library are instances of [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
+### Respuestas
+Las respuestas de esta librería son instancias de [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
 
-### Supported CRUD Operations
-Here are the operations available for each entity:
+### Operaciones CRUD soportadas
+Estas son las operaciones disponibles para cada endpoint:
 
 | Entity | GET | POST | PUT | DELETE |
 | :-: | :-: | :-: | :-: | :-: |
@@ -110,40 +110,40 @@ Here are the operations available for each entity:
 | [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
 | [Workers](https://docs.onfleet.com/reference#workers) | get(), get(query), get(id), getByLocation(obj), getSchedule(id) | create(obj), setSchedule(id, obj), matchMetadata(obj) | update(id, obj), insertTask(id, obj) | deleteOne(id) |
 
-#### GET Requests
-To get all the documents within an endpoint, this returns a `Promise` containing an array of results:
+#### Peticiones GET
+Para obtener todos los elementos disponibles en un recurso, éstas llamadas retornan un `Promise` con el arreglo de los resultados:
 ```js
 get();
 ```
 
-##### Examples of `get()`
+##### Ejemplos de `get()`
 ```js
 onfleetApi.workers.get().then((results) => { /* ... */ });
 onfleetApi.workers.get({ queryParams }).then((results) => { /* ... */ });
 ```
 
-Optionally you can send a JSON object of query params for some certain endpoints.  
-Refer back to [API documentation](https://docs.onfleet.com/) for endpoints that support query parameters.
+Opcionalmente, podemos utilizar un objeto JSON con parámetros de búsqueda en los recursos que lo soportan.  
+En la [documentación de la API](https://docs.onfleet.com/) se describe qué recursos lo permiten.
 ```js
 onfleetApi.workers.get({ phones: "<phone_number>" }).then((results) => { /* ... */ });
 
 onfleetApi.tasks.get({ from: "<from_time>", to: "<to_time>" }).then((results) => { /* ... */ });
 ```
 
-> Both `{ 'analytics': 'true' }` and `{ analytics: true }` work as query params since they represent a valid JSON object
+> Tanto `{ 'analytics': 'true' }` como `{ analytics: true }` funcionan parámetros de búsqueda porque ambos representan un objeto JSON válido
 
-To get one of the documents within an endpoint, if the optional _paramName_ is not provided, the library will search by ID. If _paramName_ is provided, it will search by _paramName_:
+Para obtener uno de los elementos de un endpoint, si el parámetreo opcional _paramName_ no es suministrado, la libraría buscará por ID. Si _paramName_ es suministrado, se utilizará _paramName_:
 ```js
 get(<parameter>, <paramName> (optional), <queryParam> (optional));
 ```
 
-_paramName_ can be any of:
+Posibles valores de _paramName_:
 - `id`
 - `name`
 - `phone`
 - `shortId`
 
-##### Examples of `get(param)`
+##### Ejemplos de `get(param)`
 ```js
 onfleetApi.workers.get("<24_digit_ID>").then((result) => { /* ... */ });
 onfleetApi.workers.get("<24_digit_ID>", { analytics: true }).then((result) => { /* ... */ });
@@ -161,12 +161,12 @@ onfleetApi.containers.get("<24_digit_ID>", "teams").then((result) => {{ /* ... *
 onfleetApi.containers.get("<24_digit_ID>", "organizations").then((result) => { /* ... */ });
 ```
 
-To get a driver by location, use the `getByLocation` function:
+Para obtener un driver según su ubicación, podemos utilizar la función `getByLocation`:
 ```js
 getByLocation({ queryParams });
 ```
 
-##### Examples of `getByLocation`
+##### Ejemplos de `getByLocation`
 ```js
 const locationParams = {
   longitude: -122.404,
@@ -177,13 +177,13 @@ const locationParams = {
 onfleetApi.workers.getByLocation(locationParams).then((results) => { /* ... */ });
 ```
 
-#### POST Requests
-To create a document within an endpoint:
+#### Peticiones POST
+Para crear un elemento de un recurso:
 ```js{
 create({ data }});
 ```
 
-##### Examples of `create()`
+##### Ejemplos de `create()`
 ```js
 const data = {
   name: "John Driver",
@@ -200,7 +200,7 @@ const data = {
 onfleetApi.workers.create(data);
 ```
 
-Extended POST requests include `clone`, `forceComplete`, `batchCreate`, `autoAssign` on the *Tasks* endpoint; `setSchedule` on the *Workers* endpoint; `autoDispatch` on the *Teams* endpoint; and `matchMetadata` on all supported entities. For instance:
+Otras peticiones POST incluyen `clone`, `forceComplete`, `batchCreate`, `autoAssign` en el recurso *Tasks*; `setSchedule` en el recurso *Workers*; `autoDispatch` en el recurso *Teams*; y `matchMetadata` en todos los recursos que lo soportan. Por ejemplo:
 
 ```js
 onfleetApi.tasks.clone('<24_digit_ID>');
@@ -215,15 +215,15 @@ onfleetApi.teams.autoDispatch('<24_digit_ID>', { data });
 onfleetApi.<entity_name_pluralized>.matchMetdata({ data });
 ```
 
-For more details, check our documentation on [`clone`](https://docs.onfleet.com/reference#clone-task), [`forceComplete`](https://docs.onfleet.com/reference#complete-task), [`batchCreate`](https://docs.onfleet.com/reference#create-tasks-in-batch), [`autoAssign`](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [`setSchedule`](https://docs.onfleet.com/reference#set-workers-schedule), [`matchMetadata`](https://docs.onfleet.com/reference#querying-by-metadata), and [`autoDispatch`](https://docs.onfleet.com/reference#team-auto-dispatch).
+Para más información, podemos consultar la documentación sobre [`clone`](https://docs.onfleet.com/reference#clone-task), [`forceComplete`](https://docs.onfleet.com/reference#complete-task), [`batchCreate`](https://docs.onfleet.com/reference#create-tasks-in-batch), [`autoAssign`](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [`setSchedule`](https://docs.onfleet.com/reference#set-workers-schedule). [`matchMetadata`](https://docs.onfleet.com/reference#querying-by-metadata) y [`autoDispatch`](https://docs.onfleet.com/reference#team-auto-dispatch).
 
-#### PUT Requests
-To update a document within an endpoint:
+#### Peticiones PUT
+Para modificar un elemento de un recurso:
 ```js
 update("<24_digit_ID>", { data });
 ```
 
-##### Examples of `update()`
+##### Ejemplos de `update()`
 ```js
 const newData = {
   name: "Jack Driver",
@@ -232,25 +232,25 @@ const newData = {
 onfleetApi.workers.update("<24_digit_ID>", newData);
 ```
 
-##### Examples of `insertTask()`
+##### Ejemplos de `insertTask()`
 ```js
 onfleetApi.workers.insertTask("<24_digit_ID>", { data }).then((result) => { /* ... */ });
 ```
 
-#### DELETE Requests
-To delete a document within an endpoint:
+#### Peticiones DELETE
+Para eliminar un elemento de un recurso:
 ```js
 deleteOne("<24_digit_ID>");
 ```
 
-##### Examples of `deleteOne()`
+##### Ejemplos de `deleteOne()`
 ```js
 onfleetApi.workers.deleteOne("<24_digit_ID>");
 ```
 
-### Examples of utilizing your CRUD operations
+### Ejemplos de cómo utilizar las operaciones CRUD
 
-- Get all the recipients:
+- Obetener todos los recipients:
   ```js
   onfleetApi.tasks
     .get({ from: "1557936000000", to: "1558022400000" })
@@ -264,7 +264,7 @@ onfleetApi.workers.deleteOne("<24_digit_ID>");
     .catch((err) => { /* ... */ });
   ```
 
-- `async`/`await` can also be used like this:
+- Podemos usar `async`/`await` así:
   ```js
   async function findAllWorkers() {
     try {
@@ -277,9 +277,9 @@ onfleetApi.workers.deleteOne("<24_digit_ID>");
   findAllWorkers();
   ```
 
-### Things NOT to do
+### Qué NO hacer
 
-- Inefficient pattern, use metadata instead:
+- Patrón ineficiente, debemos usar metadata:
   ```js
   // DONT
   onfleetApi.workers
@@ -306,4 +306,4 @@ onfleetApi.workers.deleteOne("<24_digit_ID>");
     .catch((err) => { /* ... */ });
   ```
 
-*Go to [top](#onfleet-nodejs-wrapper)*.
+*Ir al [inicio](#onfleet-nodejs-wrapper)*.
