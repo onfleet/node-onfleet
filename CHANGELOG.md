@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.2.7] - 2021-08-23
 ### Added
-- Enable passing a baseURL param to `Onfleet`'s constructor
+- Enable passing `baseURL` as param to `Onfleet`'s constructor
 - README in ES
 - CHANGELOG
 ### Changed
