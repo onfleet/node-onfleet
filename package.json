@@ -1,6 +1,6 @@
 {
   "name": "@onfleet/node-onfleet",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Onfleet's Node.js API Wrapper Package",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,9 @@
     "node-onfleet"
   ],
   "author": "James Li",
+  "contributors": [
+    "Julián Pérez"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/onfleet/node-onfleet/issues"
