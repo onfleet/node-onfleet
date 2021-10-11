@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.8] - 2021-10-11
+### Changed
+- Relocate `depleted` event handler
+
 ## [1.2.7] - 2021-08-23
 ### Added
 - Enable passing `baseURL` as param to `Onfleet`'s constructor
@@ -91,8 +95,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release on npm
 
-[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.7...HEAD
-[1.2.6]: https://github.com/onfleet/node-onfleet/compare/v1.2.6...v1.2.7
+[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.8...HEAD
+[1.2.8]: https://github.com/onfleet/node-onfleet/compare/v1.2.7...v1.2.8
+[1.2.7]: https://github.com/onfleet/node-onfleet/compare/v1.2.6...v1.2.7
 [1.2.6]: https://github.com/onfleet/node-onfleet/compare/v1.2.5...v1.2.6
 [1.2.5]: https://github.com/onfleet/node-onfleet/compare/v1.2.4...v1.2.5
 [1.2.4]: https://github.com/onfleet/node-onfleet/compare/v1.2.3...v1.2.4
