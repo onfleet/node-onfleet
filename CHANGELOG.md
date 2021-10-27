@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.9] - 2021-10-27
+### Changed
+- Constructor for Onfleet class should include `defaultPath` & `defaultApiVersion` to better support local dev environments
+
 ## [1.2.8] - 2021-10-11
 ### Changed
 - Relocate `depleted` event handler
@@ -95,7 +99,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release on npm
 
-[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.8...HEAD
+[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.9...HEAD
+[1.2.9]: https://github.com/onfleet/node-onfleet/compare/v1.2.8...v1.2.9
 [1.2.8]: https://github.com/onfleet/node-onfleet/compare/v1.2.7...v1.2.8
 [1.2.7]: https://github.com/onfleet/node-onfleet/compare/v1.2.6...v1.2.7
 [1.2.6]: https://github.com/onfleet/node-onfleet/compare/v1.2.5...v1.2.6
