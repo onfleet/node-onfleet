@@ -1,6 +1,6 @@
 {
   "name": "@onfleet/node-onfleet",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Onfleet's Node.js API Wrapper Package",
   "main": "index.js",
   "scripts": {
