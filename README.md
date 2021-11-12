@@ -179,8 +179,8 @@ onfleetApi.workers.getByLocation(locationParams).then((results) => { /* ... */ }
 
 #### POST Requests
 To create a document within an endpoint:
-```js{
-create({ data }});
+```js
+create({ data });
 ```
 
 ##### Examples of `create()`
