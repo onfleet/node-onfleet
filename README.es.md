@@ -179,8 +179,8 @@ onfleetApi.workers.getByLocation(locationParams).then((results) => { /* ... */ }
 
 #### Peticiones POST
 Para crear un elemento de un recurso:
-```js{
-create({ data }});
+```js
+create({ data });
 ```
 
 ##### Ejemplos de `create()`
