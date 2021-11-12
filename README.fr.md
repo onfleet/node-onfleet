@@ -182,7 +182,7 @@ onfleetApi.workers.getByLocation(locationParams).then((results) => { /* ... */ }
 #### Demandes POST
 Pour créer un document dans un noeud final:
 ```js
-create({ data }});
+create({ data });
 ```
 
 ##### Exemples de `create()`
