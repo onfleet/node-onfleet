@@ -212,7 +212,7 @@ onfleetApi.workers.setSchedule('<24_digit_ID>', { data });
 
 onfleetApi.teams.autoDispatch('<24_digit_ID>', { data });
 
-onfleetApi.<entity_name_pluralized>.matchMetdata({ data });
+onfleetApi.<entity_name_pluralized>.matchMetadata({ data });
 ```
 
 For more details, check our documentation on [`clone`](https://docs.onfleet.com/reference#clone-task), [`forceComplete`](https://docs.onfleet.com/reference#complete-task), [`batchCreate`](https://docs.onfleet.com/reference#create-tasks-in-batch), [`autoAssign`](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [`setSchedule`](https://docs.onfleet.com/reference#set-workers-schedule), [`matchMetadata`](https://docs.onfleet.com/reference#querying-by-metadata), and [`autoDispatch`](https://docs.onfleet.com/reference#team-auto-dispatch).
