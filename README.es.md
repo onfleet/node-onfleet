@@ -86,6 +86,10 @@ onfleetApi.verifyKey();  // Returns a boolean
 ### Pruebas unitarias
 `npm test`
 
+Pruebas unitarias usando docker
+
+`docker-compose up --build`
+
 ### Límites
 La API impone un límite de 20 peticiones por segundo entre todas las peticiones de todas las llaves de la organización. Más detalles [aquí](https://docs.onfleet.com/reference#throttling).
 

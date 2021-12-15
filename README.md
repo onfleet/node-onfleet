@@ -86,6 +86,10 @@ onfleetApi.verifyKey();  // Returns a boolean
 ### Unit Testing
 `npm test`
 
+Unit testing using docker
+
+`docker-compose up --build`
+
 ### Throttling
 Rate limiting is enforced by the API with a threshold of 20 requests per second across all your organization's API keys. Learn more about it [here](https://docs.onfleet.com/reference#throttling).
 
