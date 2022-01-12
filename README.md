@@ -22,6 +22,7 @@ If you have any questions, please reach us by submitting an issue [here](https:/
 * [Usage](#usage)
     - [Authentication](#authentication)
     - [Unit testing](#unit-testing)
+    - [Unit testing using Docker](#unit-testing-using-docker)
     - [Throttling](#throttling)
     - [Responses](#responses)
     - [Supported CRUD operations](#supported-crud-operations)
@@ -86,7 +87,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 ### Unit Testing
 `npm test`
 
-Unit testing using docker
+### Unit testing using Docker
 
 `docker-compose up --build`
 

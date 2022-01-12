@@ -22,6 +22,7 @@ En caso de preguntas, pueden contactarnos a través de un issue [aquí](https://
 * [Uso](#uso)
     - [Autenticación](#autenticación)
     - [Pruebas unitarias](#pruebas-unitarias)
+    - [Pruebas unitarias usando docker](#pruebas-unitarias-usando-docker)
     - [Límites](#límites)
     - [Respuestas](#respuestas)
     - [Operaciones CRUD soportadas](#operaciones-crud-soportadas)
@@ -86,7 +87,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 ### Pruebas unitarias
 `npm test`
 
-Pruebas unitarias usando docker
+### Pruebas unitarias usando Docker
 
 `docker-compose up --build`
 
