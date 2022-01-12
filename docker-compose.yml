@@ -1,0 +1,6 @@
+version: "3.7"
+services:
+  node-onfleet:
+    container_name: node-onfleet
+    build: .
+    user: "node"

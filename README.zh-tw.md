@@ -21,6 +21,7 @@
 * [使用守則](#使用守則)
     - [金鑰認證](#金鑰認證)
     - [單元測試](#單元測試)
+    - [使用Docker進行單元測試](#使用Docker進行單元測試)
     - [API速限](#api速限)
     - [請求回應](#請求回應)
     - [支援的CRUD操作](#支援的CRUD操作)
@@ -87,6 +88,10 @@ onfleetApi.verifyKey();  // Returns a boolean
 
 ### 單元測試
 `npm test`
+
+### 使用Docker進行單元測試
+
+`docker-compose up --build`
 
 ### API速限
 原則上API的速限為每秒鐘20次請求，詳情請參考[官方文件](https://docs.onfleet.com/reference#throttling)。在此模組內我們也提供了限速，以避免您無意間超過了API請求的速限而導致帳號被禁的狀況。

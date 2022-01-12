@@ -23,6 +23,7 @@ Si vous avez des questions, veuillez contacter Onfleet en soumettant un problèm
 * [Utilisation](#utilisation)
 * [Authentification](#authentification)
 * [Tests unitaires](#tests-unitaires)
+* [Tests unitaires à l'aide de Docker](#tests-unitaires-à-l'aide-de-docker)
 * [Étranglement](#étranglement)
 * [Réponses](#Réponses)
 * [Opérations CRUD prises en charge](#opérations-crud-prises-en-charge)
@@ -88,6 +89,10 @@ Une fois que l'objet Onfleet est créé, vous aurez accès à tous les points de
 
 ### Tests unitaires
 `npm test`
+
+### Tests unitaires à l'aide de Docker
+
+`docker-compose up --build`
 
 ### Étranglement
 La limitation de débit est appliquée par l'API avec un seuil de 20 demandes par seconde pour toutes les clés d'API de votre organisation. Pour en savoir plus, [cliquez ici](https://docs.onfleet.com/reference#throttling). 
