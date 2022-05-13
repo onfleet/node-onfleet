@@ -46,7 +46,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": ":js: A new version of `node-onfleet` has been released: `${{ github.event.release.tag_name }}`"
+                    "text": ":js: A new version of `node-onfleet` has been released: `${{ github.event.release.tag_name }}` :tada:"
                   },
                   "accessory": {
                     "type": "button",
