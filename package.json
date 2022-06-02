@@ -4,6 +4,8 @@
   "description": "Onfleet's Node.js API Wrapper Package",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --ext .js ./",
+    "lint-fix": "eslint --fix --ext .js ./",
     "test": "mocha"
   },
   "repository": {
@@ -15,7 +17,8 @@
   ],
   "author": "James Li",
   "contributors": [
-    "Julián Pérez"
+    "Julián Pérez",
+    "Santiago Botero"
   ],
   "license": "MIT",
   "bugs": {
