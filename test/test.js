@@ -131,6 +131,13 @@ describe('HTTP Request testing', () => {
     nock(baseUrl)
       .delete(uri => uri.includes('tasks'))
       .reply(200, response.deleteTask);
+    // Mocks for `getTasks` in Teams and Workers
+    nock(baseUrl)
+      .get(uri => uri.includes('teams/K3FXFtJj2FtaO2~H60evRrDc/tasks'))
+      .reply(200, response.getTeamUnassignedTasks);
+    nock(baseUrl)
+      .get(uri => uri.includes('workers/ZxcnkJi~79nonYaMTQ960Mg2/tasks'))
+      .reply(200, response.getWorkerAssignedTasks);
   });
   it('Get function', () => {
     return onfleet.administrators.get()
@@ -221,6 +228,22 @@ describe('HTTP Request testing', () => {
         // Expect a status code being thrown
         expect(typeof res).to.equal('number');
         assert.equal(res, 200);
+      });
+  });
+  it('Get unassigned tasks in a team', () => {
+    return onfleet.teams.getTasks('K3FXFtJj2FtaO2~H60evRrDc')
+      .then((res) => {
+        expect(typeof res).to.equal('object');
+        assert.equal(res.tasks.length, 1);
+        assert.equal(res.tasks[0].id, '3VtEMGudjwjjM60j7deSI123');
+      });
+  });
+  it('Get assgined tasks for a worker', () => {
+    return onfleet.workers.getTasks('ZxcnkJi~79nonYaMTQ960Mg2')
+      .then((res) => {
+        expect(typeof res).to.equal('object');
+        assert.equal(res.tasks.length, 1);
+        assert.equal(res.tasks[0].id, '3VtEMGudjwjjM60j7deSI987');
       });
   });
 });
