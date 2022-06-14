@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2022-06-14
+### Added
+- New `getTasks` endpoints for Teams and Workers
+
 ## [1.2.10] - 2022-03-08
 ### Fixed
 - `forceComplete` endpoint does not provide a response body. so, it was throwing a fetch error
@@ -103,7 +107,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release on npm
 
-[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.2.9...HEAD
+[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/onfleet/node-onfleet/compare/v1.2.10...v1.3.0
 [1.2.10]: https://github.com/onfleet/node-onfleet/compare/v1.2.9...v1.2.10
 [1.2.9]: https://github.com/onfleet/node-onfleet/compare/v1.2.8...v1.2.9
 [1.2.8]: https://github.com/onfleet/node-onfleet/compare/v1.2.7...v1.2.8
