@@ -149,4 +149,33 @@ module.exports = {
     },
   },
   deleteTask: 200,
+  getTeamUnassignedTasks: {
+    tasks: [
+      {
+        id: '3VtEMGudjwjjM60j7deSI123',
+        timeCreated: 1643317843000,
+        timeLastModified: 1643413337768,
+        organization: 'nYrkNP6jZMSKgBwG9qG7ci3J',
+        shortId: 'c77ff123',
+        trackingURL: 'https://onf.lt/c77ff123',
+        container: {
+          type: 'TEAM',
+          team: 'K3FXFtJj2FtaO2~H60evRrDc',
+        },
+      },
+    ],
+  },
+  getWorkerAssignedTasks: {
+    tasks: [
+      {
+        id: '3VtEMGudjwjjM60j7deSI987',
+        timeCreated: 1643317843000,
+        timeLastModified: 1643319602671,
+        organization: 'nYrkNP6jZMSKgBwG9qG7ci3J',
+        shortId: 'c77ff987',
+        trackingURL: 'https://onf.lt/c77ff987',
+        worker: 'ZxcnkJi~79nonYaMTQ960Mg2',
+      },
+    ],
+  },
 };
