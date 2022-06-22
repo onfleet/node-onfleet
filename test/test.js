@@ -66,7 +66,12 @@ describe('Utility function testing - Auth test returns 200 ok', () => {
     .get('/auth/test')
     .reply(200, response.auth);
   it('authenticate endpoint', () => {
-    return util.authenticate('some_api_key')
+    return util.authenticate({
+        baseUrl: 'https://onfleet.com/api/v2',
+        headers: {
+          authorization: 'Basic some_token'
+        }
+      })
       .then((res) => {
         assert.equal((response.auth.status === 200), res);
       });
