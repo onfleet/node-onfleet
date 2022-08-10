@@ -27,15 +27,15 @@
   "homepage": "https://onfleet.com/",
   "dependencies": {
     "bottleneck": "^2.19.5",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^5.12.1",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.16.0",
-    "minimist": "^0.2.1",
+    "minimist": "^1.2.6",
     "mocha": "^6.1.4",
     "nock": "^10.0.6"
   }
