@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable global-require */
 /* eslint-disable arrow-body-style */
 /* eslint-env mocha */
 const chai = require('chai');
@@ -67,11 +69,11 @@ describe('Utility function testing - Auth test returns 200 ok', () => {
     .reply(200, response.auth);
   it('authenticate endpoint', () => {
     return util.authenticate({
-        baseUrl: 'https://onfleet.com/api/v2',
-        headers: {
-          authorization: 'Basic some_token'
-        }
-      })
+      baseUrl: 'https://onfleet.com/api/v2',
+      headers: {
+        authorization: 'Basic some_token',
+      },
+    })
       .then((res) => {
         assert.equal((response.auth.status === 200), res);
       });
@@ -108,40 +110,40 @@ describe('HTTP Request testing', () => {
   beforeEach(() => {
     // We use the admin endpoint to test list()
     nock(baseUrl)
-      .get(uri => uri.includes('admins'))
+      .get((uri) => uri.includes('admins'))
       .reply(200, response.list);
     // We use the tasks and recipients endpoint to test getOne()
     nock(baseUrl)
-      .get(uri => uri.includes('tasks'))
+      .get((uri) => uri.includes('tasks'))
       .reply(200, response.get);
     nock(baseUrl)
-      .get(uri => uri.includes('recipients'))
+      .get((uri) => uri.includes('recipients'))
       .reply(200, response.getRecipients);
     // We use the team endpoint to test createOne() and getWorkerEta()
     nock(baseUrl)
-      .post(uri => uri.includes('teams'))
+      .post((uri) => uri.includes('teams'))
       .reply(200, response.createTeams);
     nock(baseUrl)
-      .get(uri => uri.includes('teams'))
+      .get((uri) => uri.includes('teams'))
       .reply(200, response.getWorkerEta);
     // We use the task endpoint to test forceComplete()
     nock(baseUrl)
-      .post(uri => uri.includes('complete'))
+      .post((uri) => uri.includes('complete'))
       .reply(200, response.forceComplete);
     // We use the workers endpoint to test update()
     nock(baseUrl)
-      .put(uri => uri.includes('workers'))
+      .put((uri) => uri.includes('workers'))
       .reply(200, response.updateWorkers);
     // We use the tasks endpoint to test deleteOne()
     nock(baseUrl)
-      .delete(uri => uri.includes('tasks'))
+      .delete((uri) => uri.includes('tasks'))
       .reply(200, response.deleteTask);
     // Mocks for `getTasks` in Teams and Workers
     nock(baseUrl)
-      .get(uri => uri.includes('teams/K3FXFtJj2FtaO2~H60evRrDc/tasks'))
+      .get((uri) => uri.includes('teams/K3FXFtJj2FtaO2~H60evRrDc/tasks'))
       .reply(200, response.getTeamUnassignedTasks);
     nock(baseUrl)
-      .get(uri => uri.includes('workers/ZxcnkJi~79nonYaMTQ960Mg2/tasks'))
+      .get((uri) => uri.includes('workers/ZxcnkJi~79nonYaMTQ960Mg2/tasks'))
       .reply(200, response.getWorkerAssignedTasks);
   });
   it('Get function', () => {
