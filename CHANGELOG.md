@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2022-08-18
+### Added
+- Added property for adding custom headers for all the requests
+
 ## [1.3.1] - 2022-06-22
 ### Fixed
 - The `verifyKey` method aims to the right environment
@@ -112,6 +116,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release on npm
 
 [Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.3.0...HEAD
+[1.3.2]: https://github.com/onfleet/node-onfleet/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/onfleet/node-onfleet/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/onfleet/node-onfleet/compare/v1.2.10...v1.3.0
 [1.2.10]: https://github.com/onfleet/node-onfleet/compare/v1.2.9...v1.2.10
