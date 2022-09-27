@@ -92,7 +92,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 `docker-compose up --build`
 
 ### Límites
-La API impone un límite de 20 peticiones por segundo entre todas las peticiones de todas las llaves de la organización. Más detalles [aquí](https://docs.onfleet.com/reference#throttling).
+La API impone un límite de 20 peticiones por segundo entre todas las peticiones de todas las llaves de la organización. Más detalles [aquí](https://docs.onfleet.com/reference/throttling).
 
 La librería también implementa un limitador para prevenir excesos accidentales de los límites y, eventualmente, posibles sanciones.
 
@@ -104,16 +104,16 @@ Estas son las operaciones disponibles para cada endpoint:
 
 | Entity | GET | POST | PUT | DELETE |
 | :-: | :-: | :-: | :-: | :-: |
-| [Admins/Administrators](https://docs.onfleet.com/reference#administrators) | get() | create(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
-| [Containers](https://docs.onfleet.com/reference#containers) | get(id, 'workers')<br />get(id, 'teams')<br />get(id, 'organizations') | x | insertTask(id, obj) | x |
-| [Destinations](https://docs.onfleet.com/reference#destinations) | get(id) | create(obj)<br />matchMetadata(obj) | x | x |
-| [Hubs](https://docs.onfleet.com/reference#hubs) | get() | create(obj) | update(id, obj) | x |
-| [Organization](https://docs.onfleet.com/reference#organizations) | get()<br />get(id) | x | x | x |
-| [Recipients](https://docs.onfleet.com/reference#recipients) | get(id)<br />get(name, 'name')<br />get(phone, 'phone') | create(obj)<br />matchMetadata(obj) | update(id, obj) | x |
-| [Tasks](https://docs.onfleet.com/reference#tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
-| [Teams](https://docs.onfleet.com/reference#teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
-| [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
-| [Workers](https://docs.onfleet.com/reference#workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
+| [Admins/Administrators](https://docs.onfleet.com/reference/administrators) | get() | create(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
+| [Containers](https://docs.onfleet.com/reference/containers) | get(id, 'workers')<br />get(id, 'teams')<br />get(id, 'organizations') | x | insertTask(id, obj) | x |
+| [Destinations](https://docs.onfleet.com/reference/destinations) | get(id) | create(obj)<br />matchMetadata(obj) | x | x |
+| [Hubs](https://docs.onfleet.com/reference/hubs) | get() | create(obj) | update(id, obj) | x |
+| [Organization](https://docs.onfleet.com/reference/organizations) | get()<br />get(id) | x | x | x |
+| [Recipients](https://docs.onfleet.com/reference/recipients) | get(id)<br />get(name, 'name')<br />get(phone, 'phone') | create(obj)<br />matchMetadata(obj) | update(id, obj) | x |
+| [Tasks](https://docs.onfleet.com/reference/tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
+| [Teams](https://docs.onfleet.com/reference/teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
+| [Webhooks](https://docs.onfleet.com/reference/webhooks) | get() | create(obj) | x | deleteOne(id) |
+| [Workers](https://docs.onfleet.com/reference/workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
 
 #### Peticiones GET
 Para obtener todos los elementos disponibles en un recurso, éstas llamadas retornan un `Promise` con el arreglo de los resultados:
@@ -220,7 +220,7 @@ onfleetApi.teams.autoDispatch('<24_digit_ID>', { data });
 onfleetApi.<entity_name_pluralized>.matchMetadata({ data });
 ```
 
-Para más información, podemos consultar la documentación sobre [`clone`](https://docs.onfleet.com/reference#clone-task), [`forceComplete`](https://docs.onfleet.com/reference#complete-task), [`batchCreate`](https://docs.onfleet.com/reference#create-tasks-in-batch), [`autoAssign`](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [`setSchedule`](https://docs.onfleet.com/reference#set-workers-schedule). [`matchMetadata`](https://docs.onfleet.com/reference#querying-by-metadata) y [`autoDispatch`](https://docs.onfleet.com/reference#team-auto-dispatch).
+Para más información, podemos consultar la documentación sobre [`clone`](https://docs.onfleet.com/reference/clone-task), [`forceComplete`](https://docs.onfleet.com/reference/complete-task), [`batchCreate`](https://docs.onfleet.com/reference/create-tasks-in-batch), [`autoAssign`](https://docs.onfleet.com/reference/automatically-assign-list-of-tasks), [`setSchedule`](https://docs.onfleet.com/reference/set-workers-schedule). [`matchMetadata`](https://docs.onfleet.com/reference/querying-by-metadata) y [`autoDispatch`](https://docs.onfleet.com/reference/team-auto-dispatch).
 
 #### Peticiones PUT
 Para modificar un elemento de un recurso:
