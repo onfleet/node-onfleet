@@ -178,4 +178,13 @@ module.exports = {
       },
     ],
   },
+  getBatchByBachId: {
+    status: 'succeeded',
+    submitted: 'Less than a minute ago.',
+    tasksReceived: 2,
+    tasksCreated: 2,
+    errors: [],
+    failedTasks: [],
+    succeededWithWarnings: [],
+  },
 };

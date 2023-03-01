@@ -16,27 +16,29 @@
 
 ### 目錄
 + [目錄](#目錄)
-* [概要](#概要)
-* [安裝](#安裝)
-* [使用守則](#使用守則)
+- [Onfleet Node.js Wrapper](#onfleet-nodejs-wrapper)
+    - [目錄](#目錄)
+  - [概要](#概要)
+  - [安裝](#安裝)
+  - [使用守則](#使用守則)
     - [金鑰認證](#金鑰認證)
     - [單元測試](#單元測試)
-    - [使用Docker進行單元測試](#使用Docker進行單元測試)
+    - [使用Docker進行單元測試](#使用docker進行單元測試)
     - [API速限](#api速限)
     - [請求回應](#請求回應)
-    - [支援的CRUD操作](#支援的CRUD操作)
-        * [GET 請求](#GET-請求)
-            - [使用`get`展示所有資源的範例](#使用get展示所有資源的範例)
-            - [使用`get`展示指定資源的範例](#使用get展示指定資源的範例)
-            - [展示指定地理位置的`getByLocation`資源範例](#展示指定地理位置的getbylocation資源範例)
-        * [POST 請求](#POST-請求)
-            - [使用`create`提交指定資源的範例](#使用create提交指定資源的範例)
-        * [PUT 請求](#PUT-請求)
-            - [使用`update`取代指定資源的範例](#使用update取代指定資源的範例)
-            - [使用`insertTask`取代指定資源的範例](#使用inserttask取代指定資源的範例)
-        * [DELETE 請求](#DELETE-請求)
-            - [使用`deleteOne`刪除指定資源的範例](#使用deleteone刪除指定資源的範例)
-    - [利用CRUD操作的範例](#利用CRUD操作的範例)
+    - [支援的CRUD操作](#支援的crud操作)
+      - [GET 請求](#get-請求)
+        - [使用`get`展示所有資源的範例](#使用get展示所有資源的範例)
+        - [使用`get`展示指定資源的範例](#使用get展示指定資源的範例)
+        - [展示指定地理位置的`getByLocation`資源範例](#展示指定地理位置的getbylocation資源範例)
+      - [POST 請求](#post-請求)
+        - [使用`create`提交指定資源的範例](#使用create提交指定資源的範例)
+      - [PUT 請求](#put-請求)
+        - [使用`update`取代指定資源的範例](#使用update取代指定資源的範例)
+        - [使用`insertTask`取代指定資源的範例](#使用inserttask取代指定資源的範例)
+      - [DELETE 請求](#delete-請求)
+        - [使用`deleteOne`刪除指定資源的範例](#使用deleteone刪除指定資源的範例)
+    - [利用CRUD操作的範例](#利用crud操作的範例)
     - [錯誤的示範](#錯誤的示範)
 
 
@@ -110,7 +112,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 | [Hubs](https://docs.onfleet.com/reference/hubs) | get() | create(obj) | update(id, obj) | x |
 | [Organization](https://docs.onfleet.com/reference/organizations) | get()<br />get(id) | x | x | x |
 | [Recipients](https://docs.onfleet.com/reference/recipients) | get(id)<br />get(name, 'name')<br />get(phone, 'phone') | create(obj)<br />matchMetadata(obj) | update(id, obj) | x |
-| [Tasks](https://docs.onfleet.com/reference/tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
+| [Tasks](https://docs.onfleet.com/reference/tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />batchCreateAsync(obj)<br />getBatch(id)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
 | [Teams](https://docs.onfleet.com/reference/teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference/webhooks) | get() | create(obj) | x | deleteOne(id) |
 | [Workers](https://docs.onfleet.com/reference/workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
@@ -166,6 +168,13 @@ onfleetApi.containers.get("<24_digit_ID>", "teams").then((result) => {{ /* ... *
 onfleetApi.containers.get("<24_digit_ID>", "organizations").then((result) => { /* ... */ });
 ```
 
+欲大量獲取某指定ID的task資料，請使用getBatch節點：
+
+###### 展示批量task資料的getBatch(id)資源範例
+```js
+onfleetAPI.tasks.getBatch("<jobId>","jobId").then((result) => { /* ... */ });
+```
+
 欲使用地理位置來搜尋線上的worker，請使用`getByLocation`：
 ```js
 getByLocation({ queryParams });
@@ -205,12 +214,13 @@ const data = {
 onfleetApi.workers.create(data);
 ```
 
-其他延伸的POST請求包含了*Tasks*節點上的`clone`, `forceComplete`, `batchCreate`, `autoAssign`，*Workers*節點上的`setSchedule`，*Teams*節點上的`autoDispatch`，以及所有支持節點上的`matchMetadata`：
+其他延伸的POST請求包含了*Tasks*節點上的`clone`, `forceComplete`, `batchCreate`,`batchCreateAsync`, `autoAssign`，*Workers*節點上的`setSchedule`，*Teams*節點上的`autoDispatch`，以及所有支持節點上的`matchMetadata`：
 
 ```js
 onfleetApi.tasks.clone('<24_digit_ID>');
 onfleetApi.tasks.forceComplete('<24_digit_ID>', { data });
 onfleetApi.tasks.batchCreate({ data });
+onfleetApi.tasks.batchCreateAsync({ data });
 onfleetApi.tasks.autoAssign({ data });
 
 onfleetApi.workers.setSchedule('<24_digit_ID>', { data });
