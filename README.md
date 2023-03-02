@@ -16,27 +16,29 @@ Visit our blog post on the [API wrapper project](https://onfleet.com/blog/api-wr
 If you have any questions, please reach us by submitting an issue [here](https://github.com/onfleet/node-onfleet/issues) or contact support@onfleet.com.
 
 ### Table of contents
-* [Table of contents](#table-of-contents)
-* [Synopsis](#synopsis)
-* [Installation](#installation)
-* [Usage](#usage)
+- [Onfleet Node.js Wrapper](#onfleet-nodejs-wrapper)
+    - [Table of contents](#table-of-contents)
+  - [Synopsis](#synopsis)
+  - [Installation](#installation)
+  - [Usage](#usage)
     - [Authentication](#authentication)
-    - [Unit testing](#unit-testing)
+    - [Unit Testing](#unit-testing)
     - [Unit testing using Docker](#unit-testing-using-docker)
     - [Throttling](#throttling)
     - [Responses](#responses)
-    - [Supported CRUD operations](#supported-crud-operations)
-        * [GET Requests](#get-requests)
-            - [Examples of `get()`](#examples-of-get)
-            - [Examples of `get(param)`](#examples-of-getparam)
-            - [Examples of `getByLocation`](#examples-of-getbylocation)
-        * [POST Requests](#post-requests)
-            - [Examples of `create()`](#examples-of-create)
-        * [PUT Requests](#put-requests)
-            - [Examples of `update()`](#examples-of-update)
-            - [Examples of `insertTask()`](#examples-of-inserttask)
-        * [DELETE Requests](#delete-requests)
-            - [Examples of `deleteOne()`](#examples-of-deleteone)
+    - [Supported CRUD Operations](#supported-crud-operations)
+      - [GET Requests](#get-requests)
+        - [Examples of `get()`](#examples-of-get)
+        - [Examples of `get(param)`](#examples-of-getparam)
+        - [Example of `getBatch(id)`](#example-of-getbatchid)
+        - [Examples of `getByLocation`](#examples-of-getbylocation)
+      - [POST Requests](#post-requests)
+        - [Examples of `create()`](#examples-of-create)
+      - [PUT Requests](#put-requests)
+        - [Examples of `update()`](#examples-of-update)
+        - [Examples of `insertTask()`](#examples-of-inserttask)
+      - [DELETE Requests](#delete-requests)
+        - [Examples of `deleteOne()`](#examples-of-deleteone)
     - [Examples of utilizing your CRUD operations](#examples-of-utilizing-your-crud-operations)
     - [Things NOT to do](#things-not-to-do)
 
@@ -110,7 +112,7 @@ Here are the operations available for each entity:
 | [Hubs](https://docs.onfleet.com/reference#hubs) | get() | create(obj) | update(id, obj) | x |
 | [Organization](https://docs.onfleet.com/reference#organizations) | get()<br />get(id) | x | x | x |
 | [Recipients](https://docs.onfleet.com/reference#recipients) | get(id)<br />get(name, 'name')<br />get(phone, 'phone') | create(obj)<br />matchMetadata(obj) | update(id, obj) | x |
-| [Tasks](https://docs.onfleet.com/reference#tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
+| [Tasks](https://docs.onfleet.com/reference#tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />batchCreateAsync(obj)<br />getBatch(id)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
 | [Teams](https://docs.onfleet.com/reference#teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
 | [Workers](https://docs.onfleet.com/reference#workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
@@ -166,6 +168,13 @@ onfleetApi.containers.get("<24_digit_ID>", "teams").then((result) => {{ /* ... *
 onfleetApi.containers.get("<24_digit_ID>", "organizations").then((result) => { /* ... */ });
 ```
 
+To obtain information for a specific batch
+
+##### Example of `getBatch(id)`
+```js
+onfleetAPI.tasks.getBatch("<jobId>","jobId").then((result) => { /* ... */ });
+```
+
 To get a driver by location, use the `getByLocation` function:
 ```js
 getByLocation({ queryParams });
@@ -205,12 +214,13 @@ const data = {
 onfleetApi.workers.create(data);
 ```
 
-Extended POST requests include `clone`, `forceComplete`, `batchCreate`, `autoAssign` on the *Tasks* endpoint; `setSchedule` on the *Workers* endpoint; `autoDispatch` on the *Teams* endpoint; and `matchMetadata` on all supported entities. For instance:
+Extended POST requests include `clone`, `forceComplete`, `batchCreate`,`batchCreateAsync`, `autoAssign` on the *Tasks* endpoint; `setSchedule` on the *Workers* endpoint; `autoDispatch` on the *Teams* endpoint; and `matchMetadata` on all supported entities. For instance:
 
 ```js
 onfleetApi.tasks.clone('<24_digit_ID>');
 onfleetApi.tasks.forceComplete('<24_digit_ID>', { data });
 onfleetApi.tasks.batchCreate({ data });
+onfleetApi.tasks.batchCreateAsync({ data });
 onfleetApi.tasks.autoAssign({ data });
 
 onfleetApi.workers.setSchedule('<24_digit_ID>', { data });
