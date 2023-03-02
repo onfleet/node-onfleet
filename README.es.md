@@ -16,29 +16,31 @@ Los invitamos a visitar nuestra publicación sobre el [proyecto de librerías pa
 En caso de preguntas, pueden contactarnos a través de un issue [aquí](https://github.com/onfleet/pyonfleet/issues) o escribirnos a support@onfleet.com.
 
 ## Tabla de contenidos
-* [Tabla de contenidos](#tabla-de-contenidos)
-* [Sinopsis](#sinopsis)
-* [Instalación](#instalación)
-* [Uso](#uso)
+- [Onfleet Node.js Wrapper](#onfleet-nodejs-wrapper)
+  - [Tabla de contenidos](#tabla-de-contenidos)
+  - [Sinopsis](#sinopsis)
+  - [Instalación](#instalación)
+  - [Uso](#uso)
     - [Autenticación](#autenticación)
     - [Pruebas unitarias](#pruebas-unitarias)
-    - [Pruebas unitarias usando docker](#pruebas-unitarias-usando-docker)
+    - [Pruebas unitarias usando Docker](#pruebas-unitarias-usando-docker)
     - [Límites](#límites)
     - [Respuestas](#respuestas)
     - [Operaciones CRUD soportadas](#operaciones-crud-soportadas)
-        * [Peticiones GET](#peticiones-get)
-            - [Ejemplos de `get()`](#ejemplos-de-get)
-            - [Ejemplos de `get(parametro)`](#ejemplos-de-getparametro)
-            - [Ejemplos de `getByLocation`](#ejemplos-de-getbylocation)
-        * [Peticiones POST](#peticiones-post)
-            - [Ejemplos de `create()`](#ejemplos-de-create)
-        * [Peticiones PUT](#peticiones-put)
-            - [Ejemplos de `update()`](#ejemplos-de-update)
-            - [Ejemplos de `insertTask()`](#ejemplos-de-inserttask)
-        * [Peticiones DELETE](#peticiones-delete)
-            - [Ejemplos de `deleteOne()`](#ejemplos-de-deleteone)
-    - [Ejemplos de cómo utilizar las operaciones CRUD](#ejemplos-de-como-utilizar-las-operaciones-crud)
-    - [Qué NO hacer](#que-no-hacer)
+      - [Peticiones GET](#peticiones-get)
+        - [Ejemplos de `get()`](#ejemplos-de-get)
+        - [Ejemplos de `get(param)`](#ejemplos-de-getparam)
+        - [Ejemplos de `getBatch(id)`](#ejemplos-de-getbatchid)
+        - [Ejemplos de `getByLocation`](#ejemplos-de-getbylocation)
+      - [Peticiones POST](#peticiones-post)
+        - [Ejemplos de `create()`](#ejemplos-de-create)
+      - [Peticiones PUT](#peticiones-put)
+        - [Ejemplos de `update()`](#ejemplos-de-update)
+        - [Ejemplos de `insertTask()`](#ejemplos-de-inserttask)
+      - [Peticiones DELETE](#peticiones-delete)
+        - [Ejemplos de `deleteOne()`](#ejemplos-de-deleteone)
+    - [Ejemplos de cómo utilizar las operaciones CRUD](#ejemplos-de-cómo-utilizar-las-operaciones-crud)
+    - [Qué NO hacer](#qué-no-hacer)
 
 ## Sinopsis
 La librería en Node.js de Onfleet nos permite un acceso fácil y cómodo a la API de Onfleet.
@@ -110,7 +112,7 @@ Estas son las operaciones disponibles para cada endpoint:
 | [Hubs](https://docs.onfleet.com/reference/hubs) | get() | create(obj) | update(id, obj) | x |
 | [Organization](https://docs.onfleet.com/reference/organizations) | get()<br />get(id) | x | x | x |
 | [Recipients](https://docs.onfleet.com/reference/recipients) | get(id)<br />get(name, 'name')<br />get(phone, 'phone') | create(obj)<br />matchMetadata(obj) | update(id, obj) | x |
-| [Tasks](https://docs.onfleet.com/reference/tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
+| [Tasks](https://docs.onfleet.com/reference/tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />batchCreateAsync(obj)<br />getBatch(id)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
 | [Teams](https://docs.onfleet.com/reference/teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference/webhooks) | get() | create(obj) | x | deleteOne(id) |
 | [Workers](https://docs.onfleet.com/reference/workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
@@ -166,6 +168,12 @@ onfleetApi.containers.get("<24_digit_ID>", "teams").then((result) => {{ /* ... *
 onfleetApi.containers.get("<24_digit_ID>", "organizations").then((result) => { /* ... */ });
 ```
 
+Para obtener un información de un batch específico
+##### Ejemplos de `getBatch(id)`
+```js
+onfleetAPI.tasks.getBatch("<jobId>","jobId").then((result) => { /* ... */ });
+```
+
 Para obtener un driver según su ubicación, podemos utilizar la función `getByLocation`:
 ```js
 getByLocation({ queryParams });
@@ -205,12 +213,13 @@ const data = {
 onfleetApi.workers.create(data);
 ```
 
-Otras peticiones POST incluyen `clone`, `forceComplete`, `batchCreate`, `autoAssign` en el recurso *Tasks*; `setSchedule` en el recurso *Workers*; `autoDispatch` en el recurso *Teams*; y `matchMetadata` en todos los recursos que lo soportan. Por ejemplo:
+Otras peticiones POST incluyen `clone`, `forceComplete`, `batchCreate`,`batchCreateAsync`, `autoAssign` en el recurso *Tasks*; `setSchedule` en el recurso *Workers*; `autoDispatch` en el recurso *Teams*; y `matchMetadata` en todos los recursos que lo soportan. Por ejemplo:
 
 ```js
 onfleetApi.tasks.clone('<24_digit_ID>');
 onfleetApi.tasks.forceComplete('<24_digit_ID>', { data });
 onfleetApi.tasks.batchCreate({ data });
+onfleetApi.tasks.batchCreateAsync({ data });
 onfleetApi.tasks.autoAssign({ data });
 
 onfleetApi.workers.setSchedule('<24_digit_ID>', { data });

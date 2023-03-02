@@ -145,6 +145,9 @@ describe('HTTP Request testing', () => {
     nock(baseUrl)
       .get((uri) => uri.includes('workers/ZxcnkJi~79nonYaMTQ960Mg2/tasks'))
       .reply(200, response.getWorkerAssignedTasks);
+    nock(baseUrl)
+      .get((uri) => uri.includes('tasks/batch/Qrx5VCHwYoPhWP9f35JzY87m'))
+      .reply(200, response.getBatchByBachId);
   });
   it('Get function', () => {
     return onfleet.administrators.get()
