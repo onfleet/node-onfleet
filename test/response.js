@@ -187,4 +187,22 @@ module.exports = {
     failedTasks: [],
     succeededWithWarnings: [],
   },
+  getManifestProvider: {
+    manifestDate: 1694199600000,
+    departureTime: 1694199600000,
+    driver: {
+      name: "Test One",
+      phone: "+16265555768",
+    },
+    vehicle: {
+      type: "CAR",
+      description: "Honda",
+      licensePlate: "12345687",
+      color: "Purple",
+      timeLastModified: 1692746334342,
+    },
+    hubAddress: "1111 South Figueroa Street, Los Angeles, California 90015",
+    turnByTurn: [],
+    totalDistance: null
+  },
 };
