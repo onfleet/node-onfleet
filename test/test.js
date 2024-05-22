@@ -40,6 +40,14 @@ const updateDetail = {
   phone: '+18883133131',
 };
 
+const deliveryManifestObject = {
+  hubId: 'kyfYe*wyVbqfomP2HTn5dAe1~*O',
+  workerId: 'kBUZAb7pREtRn*8wIUCpjnPu',
+  googleApiKey: '<google_direction_api_key>',
+  startDate: '1455072025000',
+  endDate: '1455072025000'
+};
+
 chai.should();
 chai.use(chaiAsPromised);
 
@@ -261,10 +269,11 @@ describe('HTTP Request testing', () => {
       });
   });
   it('Get compliance information from tasks assigned to Onfleet drivers', () => {
-    return onfleet.workers.getDeliveryManifest('kyfYe*wyVbqfomP2HTn5dAe1~*O', 'kBUZAb7pREtRn*8wIUCpjnPu')
+    return onfleet.workers.getDeliveryManifest(deliveryManifestObject)
       .then((res) => {
         expect(typeof res).to.equal('object');
         assert.equal(res.manifestDate, 1694199600000);
+        assert.equal(res.turnByTurn.length, 1);
       });
   });
 });

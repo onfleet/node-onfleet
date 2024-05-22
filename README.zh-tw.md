@@ -115,7 +115,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 | [Tasks](https://docs.onfleet.com/reference/tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />batchCreateAsync(obj)<br />getBatch(id)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
 | [Teams](https://docs.onfleet.com/reference/teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference/webhooks) | get() | create(obj) | x | deleteOne(id) |
-| [Workers](https://docs.onfleet.com/reference/workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj)<br />getDeliveryManifest(hubId, workerId, googleAPIKey) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
+| [Workers](https://docs.onfleet.com/reference/workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj)<br />getDeliveryManifest(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
 
 #### GET 請求
 展示所有資源的指令如下，回應的主體為包含一陣列的[`Promise`物件](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise):
@@ -214,6 +214,19 @@ const data = {
 onfleetApi.workers.create(data);
 ```
 
+##### 使用`getDeliveryManifest`提交指定資源的範例
+```js
+const data = {
+  hubId: "<hubId>", // Required
+  workerId: "<workerId", // Required
+  googleApiKey: "<google_direction_api_key>", // Optional
+  startDate: "<startDate>", // Optional
+  endDate: "<endDate>" // Optional
+};
+
+onfleetApi.workers.getDeliveryManifest(data);
+```
+
 其他延伸的POST請求包含了*Tasks*節點上的`clone`, `forceComplete`, `batchCreate`,`batchCreateAsync`, `autoAssign`，*Workers*節點上的`setSchedule`，*Teams*節點上的`autoDispatch`，以及所有支持節點上的`matchMetadata`：
 
 ```js
@@ -224,7 +237,7 @@ onfleetApi.tasks.batchCreateAsync({ data });
 onfleetApi.tasks.autoAssign({ data });
 
 onfleetApi.workers.setSchedule('<24_digit_ID>', { data });
-onfleetAPI.workers.getDeliveryManifest('hubId', 'workerId', 'googleAPIKey');
+onfleetAPI.workers.getDeliveryManifest({ data });
 
 onfleetApi.teams.autoDispatch('<24_digit_ID>', { data });
 
