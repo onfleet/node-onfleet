@@ -118,7 +118,7 @@ Voici les opérations CRUD prises en charge pour chaque ordinateur d'extrémité
 | [Tasks](https://docs.onfleet.com/reference#tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />batchCreateAsync(obj)<br />getBatch(id)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
 | [Teams](https://docs.onfleet.com/reference#teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
-| [Workers](https://docs.onfleet.com/reference#workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
+| [Workers](https://docs.onfleet.com/reference#workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj)<br />getDeliveryManifest(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
 
 #### Demandes GET
 Pour obtenir tous les documents d'un noeud final, cela renvoie une `Promise` contenant un tableau de résultats:
@@ -215,6 +215,19 @@ const data = {
 onfleetApi.workers.create(data);
 ```
 
+##### Exemples de `getDeliveryManifest()`
+```js
+const data = {
+  hubId: "<hubId>", // Required
+  workerId: "<workerId", // Required
+  googleApiKey: "<google_direction_api_key>", // Optional
+  startDate: "<startDate>", // Optional
+  endDate: "<endDate>" // Optional
+};
+
+onfleetApi.workers.getDeliveryManifest(data);
+```
+
 Les requêtes POST étendues incluent `clone`,` forceComplete`, `batchCreate`,`batchCreateAsync`,` autoAssign`, `setSchedule`, `autoDispatch`:
 
 ```js
@@ -225,13 +238,14 @@ onfleetApi.tasks.batchCreateAsync({ data });
 onfleetApi.tasks.autoAssign({ data });
 
 onfleetApi.workers.setSchedule('<24_digit_ID>', { data });
+onfleetAPI.workers.getDeliveryManifest({ data });
 
 onfleetApi.teams.autoDispatch('<24_digit_ID>', { data });
 
 onfleetApi.<entity_name_pluralized>.matchMetadata({ data });
 ```
 
-Pour plus de détails, consultez notre documentation sur [`clone`](https://docs.onfleet.com/reference#clone-task), [`forceComplete`](https://docs.onfleet.com/reference#complete-task), [`batchCreate`](https://docs.onfleet.com/reference#create-tasks-in-batch), [`autoAssign`](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [`setSchedule`](https://docs.onfleet.com/reference#set-workers-schedule), [`matchMetadata`](https://docs.onfleet.com/reference#querying-by-metadata), et [`autoDispatch`](https://docs.onfleet.com/reference#team-auto-dispatch).
+Pour plus de détails, consultez notre documentation sur [`clone`](https://docs.onfleet.com/reference#clone-task), [`forceComplete`](https://docs.onfleet.com/reference#complete-task), [`batchCreate`](https://docs.onfleet.com/reference#create-tasks-in-batch), [`autoAssign`](https://docs.onfleet.com/reference#automatically-assign-list-of-tasks), [`setSchedule`](https://docs.onfleet.com/reference#set-workers-schedule), [`getDeliveryManifest`](https://docs.onfleet.com/reference/delivery-manifest), [`matchMetadata`](https://docs.onfleet.com/reference#querying-by-metadata), et [`autoDispatch`](https://docs.onfleet.com/reference#team-auto-dispatch).
 
 #### Demandes PUT
 Pour mettre à jour un document dans un noeud final:

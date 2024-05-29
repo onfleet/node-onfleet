@@ -40,6 +40,14 @@ const updateDetail = {
   phone: '+18883133131',
 };
 
+const deliveryManifestObject = {
+  hubId: 'kyfYe*wyVbqfomP2HTn5dAe1~*O',
+  workerId: 'kBUZAb7pREtRn*8wIUCpjnPu',
+  googleApiKey: '<google_direction_api_key>',
+  startDate: '1455072025000',
+  endDate: '1455072025000'
+};
+
 chai.should();
 chai.use(chaiAsPromised);
 
@@ -148,6 +156,10 @@ describe('HTTP Request testing', () => {
     nock(baseUrl)
       .get((uri) => uri.includes('tasks/batch/Qrx5VCHwYoPhWP9f35JzY87m'))
       .reply(200, response.getBatchByBachId);
+    // We use the manifestProviders endpoints to test getDeliveryManifest()
+    nock(baseUrl)
+      .post((uri) => uri.includes('integrations'))
+      .reply(200, response.getManifestProvider);
   });
   it('Get function', () => {
     return onfleet.administrators.get()
@@ -254,6 +266,14 @@ describe('HTTP Request testing', () => {
         expect(typeof res).to.equal('object');
         assert.equal(res.tasks.length, 1);
         assert.equal(res.tasks[0].id, '3VtEMGudjwjjM60j7deSI987');
+      });
+  });
+  it('Get compliance information from tasks assigned to Onfleet drivers', () => {
+    return onfleet.workers.getDeliveryManifest(deliveryManifestObject)
+      .then((res) => {
+        expect(typeof res).to.equal('object');
+        assert.equal(res.manifestDate, 1694199600000);
+        assert.equal(res.turnByTurn.length, 1);
       });
   });
 });
