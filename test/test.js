@@ -79,7 +79,7 @@ describe('Utility function testing - Auth test returns 200 ok', () => {
     return util.authenticate({
       baseUrl: 'https://onfleet.com/api/v2',
       headers: {
-        authorization: 'Basic ***REMOVED***',
+        authorization: 'Basic some_token',
       },
     })
       .then((res) => {
