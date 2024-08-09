@@ -79,7 +79,7 @@ describe('Utility function testing - Auth test returns 200 ok', () => {
     return util.authenticate({
       baseUrl: 'https://onfleet.com/api/v2',
       headers: {
-        authorization: 'Basic some_token',
+        authorization: 'Basic c94aa851ae39d4e8c61b79fb7658e6e3',
       },
     })
       .then((res) => {
@@ -160,6 +160,9 @@ describe('HTTP Request testing', () => {
     nock(baseUrl)
       .post((uri) => uri.includes('integrations'))
       .reply(200, response.getManifestProvider);
+    nock(baseUrl)
+      .get((uri) => uri.includes('customFields/task'))
+      .reply(200, response.getCustomFields);
   });
   it('Get function', () => {
     return onfleet.administrators.get()
@@ -274,6 +277,13 @@ describe('HTTP Request testing', () => {
         expect(typeof res).to.equal('object');
         assert.equal(res.manifestDate, 1694199600000);
         assert.equal(res.turnByTurn.length, 1);
+      });
+  });
+  it('Get custom fields', () => {
+    return onfleet.customfields.get()
+      .then((res) => {
+        expect(typeof res).to.equal('object');
+        assert.equal(res.fields.length, 1);
       });
   });
 });
