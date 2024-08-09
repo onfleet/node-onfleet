@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.5] - 2024-08-09
+### Added
+- Added Custom field support for node API wrapper
+
 ## [1.3.4] - 2024-05-17
 ### Added
 - Added support for Worker's Route Delivery Manifest
@@ -124,6 +128,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release on npm
 
 [Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.3.0...HEAD
+[1.3.5]: https://github.com/onfleet/node-onfleet/compare/v1.3.4...v1.3.5
 [1.3.4]: https://github.com/onfleet/node-onfleet/compare/v1.3.3...v1.3.4
 [1.3.3]: https://github.com/onfleet/node-onfleet/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/onfleet/node-onfleet/compare/v1.3.1...v1.3.2
