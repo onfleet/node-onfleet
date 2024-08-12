@@ -48,6 +48,34 @@ const deliveryManifestObject = {
   endDate: '1455072025000'
 };
 
+const createCustomField = {
+  model: 'Task',
+  field: [{
+    "description": "this is a test",
+    "asArray": false,
+    "visibility": [
+      "admin",
+      "api",
+      "worker"
+    ],
+    "editability": [
+      "admin",
+      "api"
+    ],
+    "key": "test",
+    "name": "test",
+    "type": "single_line_text_field",
+    "contexts": [
+      {
+        "isRequired": false,
+        "conditions": [],
+        "name": "save"
+      }
+    ],
+    "value": "order 123"
+  }]
+}
+
 chai.should();
 chai.use(chaiAsPromised);
 
@@ -161,8 +189,11 @@ describe('HTTP Request testing', () => {
       .post((uri) => uri.includes('integrations'))
       .reply(200, response.getManifestProvider);
     nock(baseUrl)
-      .get((uri) => uri.includes('customFields/task'))
+      .get((uri) => uri.includes('customFields'))
       .reply(200, response.getCustomFields);
+    nock(baseUrl)
+      .post((uri) => uri.includes('customFields'))
+      .reply(200, response.createCustomFields);
   });
   it('Get function', () => {
     return onfleet.administrators.get()
@@ -284,6 +315,12 @@ describe('HTTP Request testing', () => {
       .then((res) => {
         expect(typeof res).to.equal('object');
         assert.equal(res.fields.length, 1);
+      });
+  });
+  it('Create custom field', () => {
+    return onfleet.customfields.create(createCustomField)
+      .then((res) => {
+        assert.equal(res, 200);
       });
   });
 });
