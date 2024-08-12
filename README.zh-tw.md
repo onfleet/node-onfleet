@@ -116,6 +116,7 @@ onfleetApi.verifyKey();  // Returns a boolean
 | [Teams](https://docs.onfleet.com/reference/teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference/webhooks) | get() | create(obj) | x | deleteOne(id) |
 | [Workers](https://docs.onfleet.com/reference/workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj)<br />getDeliveryManifest(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
+| [Custom Fields](https://docs.onfleet.com/reference/task-custom-fields) | get(modelName) | create(obj) | update(obj) | delete(obj) |
 
 #### GET 請求
 展示所有資源的指令如下，回應的主體為包含一陣列的[`Promise`物件](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise):
