@@ -224,6 +224,7 @@ module.exports = {
   ],
     totalDistance: null
   },
+  createCustomFields: 200,
   getCustomFields: {
     fields: [
       {
