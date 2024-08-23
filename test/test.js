@@ -73,7 +73,8 @@ const createCustomField = {
       }
     ],
     "value": "order 123"
-  }]
+  }],
+  integration: "shopify"
 }
 
 chai.should();
@@ -311,7 +312,7 @@ describe('HTTP Request testing', () => {
       });
   });
   it('Get custom fields', () => {
-    return onfleet.customfields.get()
+    return onfleet.customfields.get({ integration: "shopify" })
       .then((res) => {
         expect(typeof res).to.equal('object');
         assert.equal(res.fields.length, 1);
