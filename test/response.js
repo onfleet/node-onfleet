@@ -1,4 +1,4 @@
-module.exports = {
+const testData = {
   apiKey: 'a98b7123a973e8c903612e63c8c31a64',
   encodedApiKey: 'YTk4YjcxMjNhOTczZThjOTAzNjEyZTYzYzhjMzFhNjQ=',
   baseUrl: 'https://onfleet.com/api/v2/admins',
@@ -204,53 +204,56 @@ module.exports = {
     hubAddress: "1111 South Figueroa Street, Los Angeles, California 90015",
     turnByTurn: [
       {
-      start_address: "1403 W Pico Blvd, Los Angeles, CA 90015, USA",
-      end_address: "2695 E Katella Ave, Anaheim, CA 92806, USA",
-      eta: 1692992466000,
-      driving_distance: "30.6 mi",
+        start_address: "1403 W Pico Blvd, Los Angeles, CA 90015, USA",
+        end_address: "2695 E Katella Ave, Anaheim, CA 92806, USA",
+        eta: 1692992466000,
+        driving_distance: "30.6 mi",
         steps: [
-            "Head southeast on 12th St E toward S Figueroa StPartial restricted usage road",
-            "Turn right onto Flower St",
-            "Turn left onto the Interstate 10 E ramp to 18th St",
-            "Merge onto I-10 E",
-            "Take the exit onto I-5 S toward Santa Ana",
-            "Take exit 109A for Katella Ave",
-            "Turn right onto E Katella AvePass by Comerica Bank (on the right in 1.3 mi)",
-            "Turn left onto S Douglass Rd",
-            "Turn right onto Stanley Cup Wy",
-            "Turn right"
+          "Head southeast on 12th St E toward S Figueroa StPartial restricted usage road",
+          "Turn right onto Flower St",
+          "Turn left onto the Interstate 10 E ramp to 18th St",
+          "Merge onto I-10 E",
+          "Take the exit onto I-5 S toward Santa Ana",
+          "Take exit 109A for Katella Ave",
+          "Turn right onto E Katella AvePass by Comerica Bank (on the right in 1.3 mi)",
+          "Turn left onto S Douglass Rd",
+          "Turn right onto Stanley Cup Wy",
+          "Turn right"
         ]
       }
-  ],
+    ],
     totalDistance: null
   },
   createCustomFields: 200,
   getCustomFields: {
     fields: [
       {
-        "description": "this is a test",
-        "asArray": false,
-        "visibility": [
+        description: "this is a test",
+        asArray: false,
+        visibility: [
           "admin",
           "api",
           "worker"
         ],
-        "editability": [
+        editability: [
           "admin",
           "api"
         ],
-        "key": "test",
-        "name": "test",
-        "type": "single_line_text_field",
-        "contexts": [
+        key: "test",
+        name: "test",
+        type: "single_line_text_field",
+        contexts: [
           {
-            "isRequired": false,
-            "conditions": [],
-            "name": "save"
+            isRequired: false,
+            conditions: [],
+            name: "save"
           }
         ],
-        "value": "order 123"
+        value: "order 123"
       }
     ]
   }
 };
+
+// Export testData
+export default testData;

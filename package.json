@@ -25,18 +25,22 @@
     "url": "https://github.com/onfleet/node-onfleet/issues"
   },
   "homepage": "https://onfleet.com/",
+  "type": "module",
   "dependencies": {
     "bottleneck": "^2.19.5",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.16.0",
-    "minimist": "^1.2.6",
-    "mocha": "^10.0.0",
-    "nock": "^13.2.9"
+    "chai": "^5.1.1",
+    "chai-as-promised": "^8.0.0",
+    "eslint": "^9.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "minimist": "^1.2.8",
+    "mocha": "^10.7.3",
+    "nock": "^13.5.5"
+  },
+    "engines": {
+      "node": ">=20.0.0"
   }
 }
