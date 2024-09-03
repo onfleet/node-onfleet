@@ -1,14 +1,10 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable global-require */
-/* eslint-disable arrow-body-style */
-/* eslint-env mocha */
+import * as chai from 'chai';
 import { assert, expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import nock from 'nock';
 import * as util from '../lib/util.js';
 import Onfleet from '../lib/onfleet.js';
 import response from './response.js';
-import { LIMITER_MAX_CONCURRENT, LIMITER_MIN_TIME, LIMITER_WAIT_UPON_DEPLETION, LIMITER_RESERVOIR } from '../lib/constants.js';
 
 const baseUrl = 'https://onfleet.com/api/v2';
 const apiKey = '<your_api_key>';
@@ -117,10 +113,10 @@ describe('Utility function testing - Auth test returns 200 ok', () => {
 describe('Initial testing', () => {
   it('without bottleneck options', () => {
     const onfleet = new Onfleet(apiKey);
-    assert.equal(LIMITER_MAX_CONCURRENT, 1);
-    assert.equal(LIMITER_MIN_TIME, 50);
-    assert.equal(LIMITER_WAIT_UPON_DEPLETION, 10000);
-    assert.equal(LIMITER_RESERVOIR, 20);
+    assert.equal(onfleet.limiterSettings.maxConcurrent, 1);
+    assert.equal(onfleet.limiterSettings.minTime, 50);
+    assert.equal(onfleet.limiterSettings.waitUponDepletion, 10000);
+    assert.equal(onfleet.limiterSettings.reservoir, 20);
   });
 
   it('with bottleneck options', () => {
@@ -130,12 +126,13 @@ describe('Initial testing', () => {
       LIMITER_MAX_CONCURRENT: 5,
       LIMITER_MIN_TIME: 10,
     });
-    assert.equal(LIMITER_MAX_CONCURRENT, 5);
-    assert.equal(LIMITER_MIN_TIME, 10);
-    assert.equal(LIMITER_WAIT_UPON_DEPLETION, 20000);
-    assert.equal(LIMITER_RESERVOIR, 10);
+    assert.equal(onfleet.limiterSettings.maxConcurrent, 5);
+    assert.equal(onfleet.limiterSettings.minTime, 10);
+    assert.equal(onfleet.limiterSettings.waitUponDepletion, 20000);
+    assert.equal(onfleet.limiterSettings.reservoir, 10);
   });
 });
+
 
 describe('HTTP Request testing', () => {
   const onfleet = new Onfleet(apiKey);
