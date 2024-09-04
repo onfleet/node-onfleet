@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.8] - 2024-09-01
+### Changed
+- Update Nodejs to use v20 and all dev-dependencies, replace imports with require() to use ESM.
+
 ## [1.3.7] - 2024-08-23
 ### Added
 - Added Custom field support for node API wrapper
