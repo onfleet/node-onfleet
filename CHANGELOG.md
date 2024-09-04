@@ -132,6 +132,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release on npm
 
 [Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.3.0...HEAD
+[1.3.7]: https://github.com/onfleet/node-onfleet/compare/v1.3.7...v1.3.8
 [1.3.6]: https://github.com/onfleet/node-onfleet/compare/v1.3.4...v1.3.7
 [1.3.4]: https://github.com/onfleet/node-onfleet/compare/v1.3.3...v1.3.4
 [1.3.3]: https://github.com/onfleet/node-onfleet/compare/v1.3.2...v1.3.3
