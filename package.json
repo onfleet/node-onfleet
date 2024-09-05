@@ -33,14 +33,14 @@
   "devDependencies": {
     "chai": "^5.1.1",
     "chai-as-promised": "^8.0.0",
-    "eslint": "^9.9.0",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "minimist": "^1.2.8",
     "mocha": "^10.7.3",
     "nock": "^13.5.5"
   },
-    "engines": {
-      "node": ">=20.0.0"
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
