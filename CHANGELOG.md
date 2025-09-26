@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2025-08-08
+### Added
+- Added Route Plans endpoint support
+
 ## [1.3.8] - 2024-09-01
 ### Changed
 - Update Nodejs to use v20 and all dev-dependencies, replace imports with require() to use ESM.
@@ -131,7 +135,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release on npm
 
-[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/onfleet/node-onfleet/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/onfleet/node-onfleet/compare/v1.3.8...v1.4.0
 [1.3.7]: https://github.com/onfleet/node-onfleet/compare/v1.3.7...v1.3.8
 [1.3.6]: https://github.com/onfleet/node-onfleet/compare/v1.3.4...v1.3.7
 [1.3.4]: https://github.com/onfleet/node-onfleet/compare/v1.3.3...v1.3.4
