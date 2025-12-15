@@ -45,5 +45,6 @@
   },
   "overrides": {
     "brace-expansion": "^2.0.2"
+    "cross-spawn": "^7.0.6"
   }
 }
