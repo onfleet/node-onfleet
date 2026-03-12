@@ -117,7 +117,7 @@ Voici les opérations CRUD prises en charge pour chaque ordinateur d'extrémité
 | [Recipients](https://docs.onfleet.com/reference#recipients) | get(id)<br />get(name, 'name')<br />get(phone, 'phone') | create(obj)<br />matchMetadata(obj) | update(id, obj) | x |
 | [Route Plans](https://docs.onfleet.com/update/reference/routeplan#/) | get(id)<br />get(queryParams="") | create(obj) | update(id, obj)<br />addTasksToRoutePlan(id, obj) | deleteOne(id) |
 | [Tasks](https://docs.onfleet.com/reference#tasks) | get(query)<br />get(id)<br />get(shortId, 'shortId') | create(obj)<br />clone(id)<br />clone(id, obj)<br />forceComplete(id, obj)<br />batchCreate(obj)<br />batchCreateAsync(obj)<br />getBatch(id)<br />autoAssign(obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
-| [Teams](https://docs.onfleet.com/reference#teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj) | update(id, obj) | deleteOne(id) |
+| [Teams](https://docs.onfleet.com/reference#teams) | get()<br />get(id)<br />getWorkerEta(id, obj)<br />getTasks(id) | create(obj)<br />autoDispatch(id, obj)<br />matchMetadata(obj) | update(id, obj) | deleteOne(id) |
 | [Webhooks](https://docs.onfleet.com/reference#webhooks) | get() | create(obj) | x | deleteOne(id) |
 | [Workers](https://docs.onfleet.com/reference#workers) | get()<br />get(query)<br />get(id)<br />getByLocation(obj)<br />getSchedule(id)<br />getTasks(id) | create(obj)<br />setSchedule(id, obj)<br />matchMetadata(obj)<br />getDeliveryManifest(obj) | update(id, obj)<br />insertTask(id, obj) | deleteOne(id) |
 | [Custom Fields](https://docs.onfleet.com/reference/task-custom-fields) | get(integration) | create(obj) | update(obj) | delete(obj) |
