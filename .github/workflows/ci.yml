@@ -30,6 +30,25 @@ jobs:
       - run: npm ci
       - run: npm test
 
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Runs the suite under c8 and enforces the thresholds in .c8rc.json.
+      - run: npm run coverage
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-lcov
+          path: coverage/lcov.info
+          if-no-files-found: ignore
+
   audit:
     name: Security audit
     runs-on: ubuntu-latest
@@ -47,10 +66,6 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    # NOTE: lint currently reports pre-existing errors (see QA report — MEDIUM
-    # cleanup item). Kept non-blocking so it is visible without failing every
-    # PR. Flip continue-on-error to false once the lint cleanup has landed.
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

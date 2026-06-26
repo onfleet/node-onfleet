@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint --ext .js ./",
     "lint-fix": "eslint --fix --ext .js ./",
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "c8 mocha"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
+    "c8": "^11.0.0",
     "chai": "^5.1.1",
     "chai-as-promised": "^8.0.0",
     "eslint": "^8.57.0",
@@ -44,7 +46,10 @@
     "node": ">=20.0.0"
   },
   "overrides": {
-    "brace-expansion": "^2.0.2",
+    "brace-expansion@1": "^1.1.13",
+    "brace-expansion@2": "^2.0.3",
+    "brace-expansion@3": "^3.0.1",
+    "brace-expansion@4": "^4.0.1",
     "cross-spawn": "^7.0.6",
     "serialize-javascript": "7.0.5",
     "minimatch@3": "3.1.4"

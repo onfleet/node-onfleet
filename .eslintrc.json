@@ -1,6 +1,22 @@
 {
     "extends": "airbnb-base",
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module"
+    },
+    "env": {
+        "node": true,
+        "es2022": true
+    },
     "rules": {
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
-    }
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+        "import/extensions": ["error", "ignorePackages", {"js": "always"}],
+        "prefer-destructuring": ["error", {"array": false}]
+    },
+    "overrides": [
+        {
+            "files": ["test/**/*.js"],
+            "env": {"mocha": true}
+        }
+    ]
 }
