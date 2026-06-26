@@ -40,37 +40,37 @@ const deliveryManifestObject = {
   workerId: 'kBUZAb7pREtRn*8wIUCpjnPu',
   googleApiKey: '<google_direction_api_key>',
   startDate: '1455072025000',
-  endDate: '1455072025000'
+  endDate: '1455072025000',
 };
 
 const createCustomField = {
   model: 'Task',
   field: [{
-    "description": "this is a test",
-    "asArray": false,
-    "visibility": [
-      "admin",
-      "api",
-      "worker"
+    description: 'this is a test',
+    asArray: false,
+    visibility: [
+      'admin',
+      'api',
+      'worker',
     ],
-    "editability": [
-      "admin",
-      "api"
+    editability: [
+      'admin',
+      'api',
     ],
-    "key": "test",
-    "name": "test",
-    "type": "single_line_text_field",
-    "contexts": [
+    key: 'test',
+    name: 'test',
+    type: 'single_line_text_field',
+    contexts: [
       {
-        "isRequired": false,
-        "conditions": [],
-        "name": "save"
-      }
+        isRequired: false,
+        conditions: [],
+        name: 'save',
+      },
     ],
-    "value": "order 123"
+    value: 'order 123',
   }],
-  integration: "shopify"
-}
+  integration: 'shopify',
+};
 
 chai.use(chaiAsPromised);
 
@@ -85,7 +85,10 @@ describe('Utility functions testing', () => {
     assert.equal(util.replaceWithEndpointAndParam(response.url, 'phone', response.phone), response.pathWithEndpoint);
   });
   it('appendQueryParameters should append parameters correctly', () => {
-    assert.equal(util.appendQueryParameters(response.baseUrl, response.parameters), response.pathWithQuery);
+    assert.equal(
+      util.appendQueryParameters(response.baseUrl, response.parameters),
+      response.pathWithQuery,
+    );
   });
   it('isQueryParam should return the right boolean', () => {
     assert.equal(util.isQueryParam(response.parameters), true);
@@ -97,17 +100,15 @@ describe('Utility function testing - Auth test returns 200 ok', () => {
   nock(baseUrl)
     .get('/auth/test')
     .reply(200, response.auth);
-  it('authenticate endpoint', () => {
-    return util.authenticate({
-      baseUrl: baseUrl,
-      headers: {
-        authorization: 'Basic some_token',
-      },
-    })
+  it('authenticate endpoint', () => util.authenticate({
+    baseUrl,
+    headers: {
+      authorization: 'Basic some_token',
+    },
+  })
     .then((res) => {
       assert.equal(res, response.auth.status === 200);
-    });
-  });
+    }));
 });
 
 describe('Initial testing', () => {
@@ -132,7 +133,6 @@ describe('Initial testing', () => {
     assert.equal(onfleet.limiterSettings.reservoir, 10);
   });
 });
-
 
 describe('HTTP Request testing', () => {
   const onfleet = new Onfleet(apiKey);
@@ -181,133 +181,293 @@ describe('HTTP Request testing', () => {
       .reply(200, response.createCustomFields);
   });
 
-  it('Get function', () => {
-    return onfleet.administrators.get()
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res[0].email, 'james@onfleet.com');
-        assert.equal(res[0].type, 'super');
-        assert.equal(res[1].email, 'wrapper@onfleet.com');
-        assert.equal(res[1].type, 'standard');
-      });
+  it('Get function', () => onfleet.administrators.get()
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res[0].email, 'james@onfleet.com');
+      assert.equal(res[0].type, 'super');
+      assert.equal(res[1].email, 'wrapper@onfleet.com');
+      assert.equal(res[1].type, 'standard');
+    }));
+
+  it('Get function - by ID', () => onfleet.tasks.get('SxD9Ran6pOfnUDgfTecTsgXd')
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.id, 'SxD9Ran6pOfnUDgfTecTsgXd');
+      assert.equal(res.notes, 'Onfleet API Wrappers!');
+    }));
+
+  it('Get function - by ShortId', () => onfleet.tasks.get('44a56188', 'shortId')
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.shortId, '44a56188');
+      assert.equal(res.trackingURL, 'https://onf.lt/44a56188');
+    }));
+
+  it('Get function - by phone number', () => onfleet.recipients.get('+18881787788', 'phone')
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.phone, '+18881787788');
+      assert.equal(res.skipSMSNotifications, false);
+    }));
+
+  it('Get function - by name', () => onfleet.recipients.get('Onfleet Rocks', 'name')
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.name, 'Onfleet Rocks');
+    }));
+
+  it('Create function', () => onfleet.teams.create(newTeam)
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.name, 'Onfleet Team');
+    }));
+
+  it('Get function - worker eta of team', () => onfleet.teams.getWorkerEta('SxD9Ran6pOfnUDgfTecTsgXd', etaDetail)
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.steps[0].arrivalTime, 1621339297);
+    }));
+
+  it('Force complete a task', () => onfleet.tasks.forceComplete('6Fe3qqFZ0DDwsM86zBlHJtlJ', completionDetail)
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.status, 200);
+      assert.equal(res.completionDetails.notes, 'Forced complete by Onfleet Wrapper');
+    }));
+
+  it('Update a worker', () => onfleet.workers.update('Mdfs*NDZ1*lMU0abFXAT82lM', updateDetail)
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.name, 'Stephen Curry');
+      assert.equal(res.phone, '+18883033030');
+    }));
+
+  it('Delete a task', () => onfleet.tasks.deleteOne('AqzN6ZAq*qlSDJ0FzmZIMZz~')
+    .then((res) => {
+      expect(typeof res).to.equal('number');
+      assert.equal(res, 200);
+    }));
+
+  it('Get unassigned tasks in a team', () => onfleet.teams.getTasks('K3FXFtJj2FtaO2~H60evRrDc')
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.tasks.length, 1);
+      assert.equal(res.tasks[0].id, '3VtEMGudjwjjM60j7deSI123');
+    }));
+
+  it('Get assigned tasks for a worker', () => onfleet.workers.getTasks('ZxcnkJi~79nonYaMTQ960Mg2')
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.tasks.length, 1);
+      assert.equal(res.tasks[0].id, '3VtEMGudjwjjM60j7deSI987');
+    }));
+
+  it('Get compliance information from tasks assigned to Onfleet drivers', () => onfleet.workers.getDeliveryManifest(deliveryManifestObject)
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.manifestDate, 1694199600000);
+      assert.equal(res.turnByTurn.length, 1);
+    }));
+
+  it('Get custom fields', () => onfleet.customfields.get({ integration: 'shopify' })
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.fields.length, 1);
+    }));
+
+  it('Create custom field', () => onfleet.customfields.create(createCustomField)
+    .then((res) => {
+      assert.equal(res, 200);
+    }));
+});
+
+describe('Additional resource coverage', () => {
+  const onfleet = new Onfleet(apiKey);
+  const hubId = 'tKxSfU7psqDQEBVn5e2VQ~*O';
+  const destinationId = '9qcJpfoqLwDppaZO8wYPFfsT';
+  const containerTeamId = 'K3FXFtJj2FtaO2~H60evRrDc';
+  const routePlanId = 'aBcDeFgHiJkLmNoPqRsTuVwX';
+  const webhookId = '2bcSv6Qd~OpvThCqkcdrq6w0';
+
+  // The Methods module uses a single, module-level Bottleneck limiter whose
+  // reservoir is only replenished when a response carries x-ratelimit-remaining.
+  // Returning it here keeps the shared reservoir topped up so the suite does not
+  // deplete it and start waiting (which would time the tests out).
+  const rateLimitHeaders = { 'x-ratelimit-remaining': '100' };
+
+  beforeEach(() => {
+    // Start from a clean slate so interceptors from previous suites do not leak.
+    nock.cleanAll();
+
+    // Hubs
+    nock(baseUrl)
+      .get((uri) => uri.includes('hubs'))
+      .reply(200, response.getHubs, rateLimitHeaders);
+    nock(baseUrl)
+      .post((uri) => uri.includes('hubs'))
+      .reply(200, response.createHub, rateLimitHeaders);
+    nock(baseUrl)
+      .put((uri) => uri.includes('hubs'))
+      .reply(200, response.updateHub, rateLimitHeaders);
+
+    // Destinations (metadata match registered first so it wins over plain create)
+    nock(baseUrl)
+      .post((uri) => uri.includes('destinations/metadata'))
+      .reply(200, response.matchDestinations, rateLimitHeaders);
+    nock(baseUrl)
+      .post((uri) => uri.includes('destinations'))
+      .reply(200, response.createDestination, rateLimitHeaders);
+    nock(baseUrl)
+      .get((uri) => uri.includes('destinations'))
+      .reply(200, response.getDestination, rateLimitHeaders);
+
+    // Containers
+    nock(baseUrl)
+      .get((uri) => uri.includes('containers'))
+      .reply(200, response.getContainer, rateLimitHeaders);
+
+    // Organization
+    nock(baseUrl)
+      .get((uri) => uri.includes('organization'))
+      .reply(200, response.getOrganization, rateLimitHeaders);
+
+    // Route plans
+    nock(baseUrl)
+      .post((uri) => uri.includes('routePlans'))
+      .reply(200, response.createRoutePlan, rateLimitHeaders);
+    nock(baseUrl)
+      .get((uri) => uri.includes('routePlans'))
+      .reply(200, response.getRoutePlan, rateLimitHeaders);
+    nock(baseUrl)
+      .put((uri) => uri.includes('routePlans'))
+      .reply(200, response.updateRoutePlan, rateLimitHeaders);
+    nock(baseUrl)
+      .delete((uri) => uri.includes('routePlans'))
+      .reply(200, response.deleteTask, rateLimitHeaders);
+
+    // Webhooks
+    nock(baseUrl)
+      .post((uri) => uri.includes('webhooks'))
+      .reply(200, response.createWebhook, rateLimitHeaders);
+    nock(baseUrl)
+      .get((uri) => uri.includes('webhooks'))
+      .reply(200, response.getWebhooks, rateLimitHeaders);
+    nock(baseUrl)
+      .delete((uri) => uri.includes('webhooks'))
+      .reply(200, response.deleteTask, rateLimitHeaders);
   });
 
-  it('Get function - by ID', () => {
-    return onfleet.tasks.get('SxD9Ran6pOfnUDgfTecTsgXd')
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.id, 'SxD9Ran6pOfnUDgfTecTsgXd');
-        assert.equal(res.notes, 'Onfleet API Wrappers!');
-      });
+  afterEach(() => {
+    nock.cleanAll();
   });
 
-  it('Get function - by ShortId', () => {
-    return onfleet.tasks.get('44a56188', 'shortId')
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.shortId, '44a56188');
-        assert.equal(res.trackingURL, 'https://onf.lt/44a56188');
-      });
-  });
+  // Hubs
+  it('Hubs - list hubs', () => onfleet.hubs.get()
+    .then((res) => {
+      expect(Array.isArray(res)).to.equal(true);
+      assert.equal(res[0].name, 'Downtown Hub');
+    }));
 
-  it('Get function - by phone number', () => {
-    return onfleet.recipients.get('+18881787788', 'phone')
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.phone, '+18881787788');
-        assert.equal(res.skipSMSNotifications, false);
-      });
-  });
+  it('Hubs - create a hub', () => onfleet.hubs.create({ name: 'Downtown Hub' })
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.id, hubId);
+      assert.equal(res.name, 'Downtown Hub');
+    }));
 
-  it('Get function - by name', () => {
-    return onfleet.recipients.get('Onfleet Rocks', 'name')
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.name, 'Onfleet Rocks');
-      });
-  });
+  it('Hubs - update a hub', () => onfleet.hubs.update(hubId, { name: 'Uptown Hub' })
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.name, 'Uptown Hub');
+    }));
 
-  it('Create function', () => {
-    return onfleet.teams.create(newTeam)
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.name, 'Onfleet Team');
-      });
-  });
+  // Destinations
+  it('Destinations - create a destination', () => onfleet.destinations.create({
+    address: { number: '543', street: 'Howard Street', city: 'San Francisco' },
+  })
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.id, destinationId);
+      assert.equal(res.address.street, 'Howard Street');
+    }));
 
-  it('Get function - worker eta of team', () => {
-    return onfleet.teams.getWorkerEta('SxD9Ran6pOfnUDgfTecTsgXd', etaDetail)
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.steps[0].arrivalTime, 1621339297);
-      });
-  });
+  it('Destinations - get a destination by ID', () => onfleet.destinations.get(destinationId)
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.id, destinationId);
+    }));
 
-  it('Force complete a task', () => {
-    return onfleet.tasks.forceComplete('6Fe3qqFZ0DDwsM86zBlHJtlJ', completionDetail)
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.status, 200);
-        assert.equal(res.completionDetails.notes, 'Forced complete by Onfleet Wrapper');
-      });
-  });
+  it('Destinations - match metadata', () => onfleet.destinations.matchMetadata([
+    { name: 'hello', type: 'string', value: 'world' },
+  ])
+    .then((res) => {
+      expect(Array.isArray(res)).to.equal(true);
+      assert.equal(res[0].id, destinationId);
+    }));
 
-  it('Update a worker', () => {
-    return onfleet.workers.update('Mdfs*NDZ1*lMU0abFXAT82lM', updateDetail)
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.name, 'Stephen Curry');
-        assert.equal(res.phone, '+18883033030');
-      });
-  });
+  // Containers
+  it('Containers - get a container by team', () => onfleet.containers.get(containerTeamId, 'teams')
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.type, 'TEAM');
+      assert.equal(res.team, containerTeamId);
+    }));
 
-  it('Delete a task', () => {
-    return onfleet.tasks.deleteOne('AqzN6ZAq*qlSDJ0FzmZIMZz~')
-      .then((res) => {
-        expect(typeof res).to.equal('number');
-        assert.equal(res, 200);
-      });
-  });
+  // Organization
+  it('Organization - get own organization', () => onfleet.organization.get()
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.name, 'Onfleet Organization');
+      assert.equal(res.country, 'US');
+    }));
 
-  it('Get unassigned tasks in a team', () => {
-    return onfleet.teams.getTasks('K3FXFtJj2FtaO2~H60evRrDc')
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.tasks.length, 1);
-        assert.equal(res.tasks[0].id, '3VtEMGudjwjjM60j7deSI123');
-      });
-  });
+  // Route plans
+  it('Route plans - create a route plan', () => onfleet.routeplan.create({ name: 'My Route Plan' })
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.id, routePlanId);
+      assert.equal(res.state, 'PENDING');
+    }));
 
-  it('Get assigned tasks for a worker', () => {
-    return onfleet.workers.getTasks('ZxcnkJi~79nonYaMTQ960Mg2')
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.tasks.length, 1);
-        assert.equal(res.tasks[0].id, '3VtEMGudjwjjM60j7deSI987');
-      });
-  });
+  it('Route plans - get a route plan by ID', () => onfleet.routeplan.get(routePlanId)
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.id, routePlanId);
+      assert.equal(res.state, 'PLANNED');
+    }));
 
-  it('Get compliance information from tasks assigned to Onfleet drivers', () => {
-    return onfleet.workers.getDeliveryManifest(deliveryManifestObject)
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.manifestDate, 1694199600000);
-        assert.equal(res.turnByTurn.length, 1);
-      });
-  });
+  it('Route plans - update a route plan', () => onfleet.routeplan.update(routePlanId, { name: 'Updated Route Plan' })
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.name, 'Updated Route Plan');
+    }));
 
-  it('Get custom fields', () => {
-    return onfleet.customfields.get({ integration: "shopify" })
-      .then((res) => {
-        expect(typeof res).to.equal('object');
-        assert.equal(res.fields.length, 1);
-      });
-  });
+  it('Route plans - delete a route plan', () => onfleet.routeplan.deleteOne(routePlanId)
+    .then((res) => {
+      expect(typeof res).to.equal('number');
+      assert.equal(res, 200);
+    }));
 
-  it('Create custom field', () => {
-    return onfleet.customfields.create(createCustomField)
-      .then((res) => {
-        assert.equal(res, 200);
-      });
-  });
+  // Webhooks
+  it('Webhooks - list webhooks', () => onfleet.webhooks.get()
+    .then((res) => {
+      expect(Array.isArray(res)).to.equal(true);
+      assert.equal(res[0].id, webhookId);
+    }));
+
+  it('Webhooks - create a webhook', () => onfleet.webhooks.create({
+    url: 'https://www.example.com/onfleet', trigger: 0,
+  })
+    .then((res) => {
+      expect(typeof res).to.equal('object');
+      assert.equal(res.id, webhookId);
+      assert.equal(res.isEnabled, true);
+    }));
+
+  it('Webhooks - delete a webhook', () => onfleet.webhooks.deleteOne(webhookId)
+    .then((res) => {
+      expect(typeof res).to.equal('number');
+      assert.equal(res, 200);
+    }));
 });
