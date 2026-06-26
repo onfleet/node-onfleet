@@ -4,6 +4,12 @@
 
 name: CI
 
+# Least-privilege default for GITHUB_TOKEN: all jobs here only read the repo
+# (checkout + npm). Individual jobs can escalate with a job-level permissions
+# key if they ever need more.
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches: [master]
