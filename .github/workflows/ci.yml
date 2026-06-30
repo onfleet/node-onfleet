@@ -1,0 +1,82 @@
+# Continuous Integration: runs on every pull request and on pushes to master.
+# Complements npm-publish.yml (which only runs at release time) by giving
+# fast feedback on lint, tests, and security advisories before code is merged.
+
+name: CI
+
+# Least-privilege default for GITHUB_TOKEN: all jobs here only read the repo
+# (checkout + npm). Individual jobs can escalate with a job-level permissions
+# key if they ever need more.
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Cover the declared floor (20) and current/next LTS lines so a
+        # runtime regression (e.g. the removed `assert {}` import syntax) is
+        # caught here instead of at release.
+        node-version: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Runs the suite under c8 and enforces the thresholds in .c8rc.json.
+      - run: npm run coverage
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-lcov
+          path: coverage/lcov.info
+          if-no-files-found: ignore
+
+  audit:
+    name: Security audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Fail only on high/critical advisories. Lower-severity findings are
+      # reported by Dependabot; tighten this threshold once the tree is clean.
+      - run: npm audit --audit-level=high
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
