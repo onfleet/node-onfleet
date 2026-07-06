@@ -471,3 +471,94 @@ describe('Additional resource coverage', () => {
       assert.equal(res, 200);
     }));
 });
+
+describe('Error handling testing', () => {
+  const onfleet = new Onfleet(apiKey);
+
+  afterEach(() => {
+    nock.cleanAll();
+  });
+
+  const errorBody = (error, message = 'Something went wrong') => ({
+    message: {
+      message,
+      error,
+      cause: null,
+      request: null,
+    },
+  });
+
+  it('ValidationError - constructing without an API key', () => {
+    expect(() => new Onfleet()).to.throw(Error).with.property('name', 'ValidationError');
+  });
+
+  it('RateLimitError - error code 2300 raises a RateLimitError, not a TypeError', () => {
+    nock(baseUrl)
+      .post((uri) => uri.includes('tasks'))
+      .reply(429, errorBody(2300, 'Rate limit exceeded'));
+
+    return expect(onfleet.tasks.create({}))
+      .to.be.rejected
+      .then((error) => {
+        expect(error).to.not.be.instanceOf(TypeError);
+        assert.equal(error.name, 'RateLimitError');
+        assert.equal(error.message, 'Rate limit exceeded');
+      });
+  });
+
+  it('PermissionError - error code in the 1100-1108 range raises a PermissionError', () => {
+    nock(baseUrl)
+      .post((uri) => uri.includes('tasks'))
+      .reply(403, errorBody(1104, 'Insufficient permissions'));
+
+    return expect(onfleet.tasks.create({}))
+      .to.be.rejected
+      .then((error) => {
+        expect(error).to.not.be.instanceOf(TypeError);
+        assert.equal(error.name, 'PermissionError');
+        assert.equal(error.message, 'Insufficient permissions');
+      });
+  });
+
+  it('ServiceError - error code >= 2500 raises a ServiceError', () => {
+    nock(baseUrl)
+      .post((uri) => uri.includes('tasks'))
+      .reply(500, errorBody(2500, 'Internal service error'));
+
+    return expect(onfleet.tasks.create({}))
+      .to.be.rejected
+      .then((error) => {
+        expect(error).to.not.be.instanceOf(TypeError);
+        assert.equal(error.name, 'ServiceError');
+        assert.equal(error.message, 'Internal service error');
+      });
+  });
+
+  it('ServiceError - error code 2218 (Auto-Dispatch precondition) raises a ServiceError', () => {
+    nock(baseUrl)
+      .post((uri) => uri.includes('tasks'))
+      .reply(412, errorBody(2218, 'Auto-Dispatch precondition failed'));
+
+    return expect(onfleet.tasks.create({}))
+      .to.be.rejected
+      .then((error) => {
+        expect(error).to.not.be.instanceOf(TypeError);
+        assert.equal(error.name, 'ServiceError');
+        assert.equal(error.message, 'Auto-Dispatch precondition failed');
+      });
+  });
+
+  it('HttpError - any other error code raises a generic HttpError', () => {
+    nock(baseUrl)
+      .post((uri) => uri.includes('tasks'))
+      .reply(400, errorBody(1000, 'Bad request'));
+
+    return expect(onfleet.tasks.create({}))
+      .to.be.rejected
+      .then((error) => {
+        expect(error).to.not.be.instanceOf(TypeError);
+        assert.equal(error.name, 'HttpError');
+        assert.equal(error.message, 'Bad request');
+      });
+  });
+});
