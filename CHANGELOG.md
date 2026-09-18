@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dead `.travis.yml` (Travis CI has not run for this repo since GitHub Actions was adopted).
 
 ### Security
-- Regenerated `package-lock.json` to pick up patched `js-yaml` (4.3.2) and `brace-expansion`, clearing the high-severity advisories that failed the `npm audit` gate.
+- `package-lock.json` and overrides updated to patched `js-yaml` (4.3.2) and `brace-expansion`, clearing the high-severity advisories that failed the `npm audit` gate (#131, #132).
 
 ## [1.4.1] - 2026-07-13
 ### Added
