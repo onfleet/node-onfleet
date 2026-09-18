@@ -6,12 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- CI: cancel superseded runs on the same branch (`concurrency`) and cap every job at 10 minutes.
-- CI and publish workflows: bump `actions/checkout`, `actions/setup-node` and `actions/upload-artifact` to v7 (v2/v4 target the deprecated Node 20 runner).
-- Regenerated `package-lock.json` to pick up patched `js-yaml` (4.3.2) and `brace-expansion`, clearing the high-severity advisories that failed the `npm audit` gate.
+- CI and publish workflows: cancel superseded CI runs on the same branch (`concurrency`) and cap every job at 10 minutes.
+- CI and publish workflows: bump `actions/checkout`, `actions/setup-node` and `actions/upload-artifact` to v7 (v4 targets the deprecated Node 20 runner).
 
 ### Removed
 - Dead `.travis.yml` (Travis CI has not run for this repo since GitHub Actions was adopted).
+
+### Security
+- Regenerated `package-lock.json` to pick up patched `js-yaml` (4.3.2) and `brace-expansion`, clearing the high-severity advisories that failed the `npm audit` gate.
 
 ## [1.4.1] - 2026-07-13
 ### Added
