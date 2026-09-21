@@ -11,22 +11,26 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20  
+          node-version: 20
+          cache: npm
       - run: npm ci
       - run: npm test
 
   publish:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 20
+          cache: npm
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm publish --access public
@@ -36,6 +40,7 @@ jobs:
   notify:
     needs: publish
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: slackapi/slack-github-action@v1.18.0
         with:

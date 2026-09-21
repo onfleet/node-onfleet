@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- CI and publish workflows: cancel superseded CI runs of the same pull request (`concurrency`) and cap every job at 10 minutes.
+- CI and publish workflows: bump `actions/checkout`, `actions/setup-node` and `actions/upload-artifact` to v7 (the replaced v2/v4 releases target deprecated Node runtimes).
+
+### Removed
+- Dead `.travis.yml` (Travis CI has not run for this repo since GitHub Actions was adopted).
+
+### Security
+- `package-lock.json` and overrides updated to patched `js-yaml` (4.3.2) and `brace-expansion`, clearing the high-severity advisories that failed the `npm audit` gate (#131, #132).
+
 ## [1.4.1] - 2026-07-13
 ### Added
 - Regression tests covering all five error branches (RateLimitError, PermissionError, ServiceError x2, HttpError, and the ValidationError path in the Onfleet constructor), none of which had prior test coverage.
