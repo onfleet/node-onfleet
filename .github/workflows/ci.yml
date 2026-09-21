@@ -20,11 +20,13 @@ on:
 # a workflow that is skipped for docs-only changes never reports them, which
 # leaves the PR unmergeable. Each job takes ~20s, so always running is cheap.
 
-# Cancel superseded runs on the same branch/PR so only the latest commit is
-# tested.
+# Cancel superseded runs of the same PR so only the latest commit is tested.
+# Pushes to master are never cancelled: back-to-back merges share the
+# `refs/heads/master` group, and cancelling would leave the earlier merge
+# commit without a CI verdict.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:

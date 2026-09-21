@@ -6,8 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- CI and publish workflows: cancel superseded CI runs on the same branch (`concurrency`) and cap every job at 10 minutes.
-- CI and publish workflows: bump `actions/checkout`, `actions/setup-node` and `actions/upload-artifact` to v7 (v4 targets the deprecated Node 20 runner).
+- CI and publish workflows: cancel superseded CI runs of the same pull request (`concurrency`) and cap every job at 10 minutes.
+- CI and publish workflows: bump `actions/checkout`, `actions/setup-node` and `actions/upload-artifact` to v7 (the replaced v2/v4 releases target deprecated Node runtimes).
 
 ### Removed
 - Dead `.travis.yml` (Travis CI has not run for this repo since GitHub Actions was adopted).
