@@ -35,7 +35,7 @@
     "c8": "^11.0.0",
     "chai": "^5.1.1",
     "chai-as-promised": "^8.0.0",
-    "eslint": "^8.57.0",
+    "eslint": "^10.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "minimist": "^1.2.8",
