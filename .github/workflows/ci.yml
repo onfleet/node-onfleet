@@ -41,8 +41,8 @@ jobs:
         # caught here instead of at release.
         node-version: [20, 22, 24]
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -54,15 +54,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: 20
           cache: npm
       - run: npm ci
       # Runs the suite under c8 and enforces the thresholds in .c8rc.json.
       - run: npm run coverage
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:
           name: coverage-lcov
@@ -74,8 +74,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: 20
           cache: npm
@@ -89,8 +89,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: 20
           cache: npm
